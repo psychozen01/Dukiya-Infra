@@ -56,13 +56,13 @@ function Hero() {
       className="relative min-h-screen flex flex-col justify-end bg-cover bg-center"
       style={{ backgroundImage: `url(${heroImg})` }}
     >
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/5" />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-4 pb-32">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 pb-12">
         <h1 className="text-3xl md:text-5xl font-bold tracking-wide text-[#b4956a]">
           THE ART OF ELEVATION
         </h1>
-        <p className="mt-3 max-w-2xl text-sm md:text-base text-black font-medium">
+        <p className="mt-5 max-w-2xl text-sm md:text-base text-black font-medium">
           A vision that transcends property and space, where unmatched craftsmanship
           inspires elegance and innovation to enrich lives. Imagining the extraordinary
           and building it into reality.
@@ -76,7 +76,7 @@ function Hero() {
 
       {/* bottom search panel */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 -mb-12">
-        <div className="rounded-2xl bg-black/60 backdrop-blur-md p-4 shadow-lg">
+        <div className="rounded-2xl bg-black/5 backdrop-blur-md p-4 shadow-lg">
           <div className="flex justify-center gap-3 mb-3 flex-wrap">
             {categories.map((c, i) => (
               <button
@@ -115,7 +115,7 @@ function VisionSection() {
       style={{ backgroundImage: `url(${img1})` }}
     >
       {/* dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/5" />
 
       <div className="relative z-10 text-center px-4 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-white">
@@ -328,7 +328,7 @@ function RecentBlogs() {
       style={{ backgroundImage: `url(${bg1})` }}
     >
       {/* dark veil for readability */}
-      <div className="absolute inset-0 -z-10 bg-black/70" />
+      <div className="absolute inset-0 -z-10 bg-black/5" />
 
       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
         {/* Heading */}
