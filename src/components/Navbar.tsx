@@ -11,7 +11,6 @@ const links = [
   { label: "Testimonial", to: "/testimonial" },
   { label: "FAQ", to: "/faq" },
   { label: "CSR", to: "/csr" },
-  { label: "Blogs", to: "/blogs" },
   { label: "Explore", to: "/explore" },
 ];
 
