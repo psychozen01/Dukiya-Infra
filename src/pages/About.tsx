@@ -33,7 +33,7 @@ function AboutHero() {
 
       {/* Headline */}
       <div className="relative z-10 flex items-center justify-center px-4 md:px-8">
-        <h1 className="my-8 md:my-12 lg:my-16 max-w-5xl text-center font-serif text-white drop-shadow-sm text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight">
+        <h1 className="my-16 md:my-12 lg:my-16 max-w-5xl text-center font-serif text-white drop-shadow-sm text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight">
           Reinventing comfort, building smiles &amp; leading you
           <br className="hidden md:block" /> home.
         </h1>
