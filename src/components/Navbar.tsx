@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
 
 const links = [
-  { label: "Home page", to: "/" },
+  { label: "Home", to: "/" },
   { label: "About us", to: "/about" },
   { label: "PROPERTIES", to: "/properties" },
   { label: "Testimonial", to: "/testimonial" },
@@ -13,7 +13,6 @@ const links = [
   { label: "CSR", to: "/csr" },
   { label: "Blogs", to: "/blogs" },
   { label: "Explore", to: "/explore" },
-  { label: "Contact us", to: "/contact" },
 ];
 
 export default function Navbar() {
@@ -22,32 +21,23 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <>
-      {/* Floating glass bar (over hero) */}
+      {/* Floating navbar */}
       <header className="fixed inset-x-0 top-2 z-50">
-        {/* side margins to get the “floating pill” look */}
         <div className="mx-3 md:mx-4">
           <div
             className={clsx(
-              // layout: three equal columns keeps title perfectly centered
-              "grid h-12 grid-cols-3 items-center px-3 md:px-4",
-              // shape
-              "rounded-2xl",
-              // glass surface
-              "backdrop-blur-md",
-              // tint that matches the screenshot (slightly warm-grey over bright hero)
+              "grid h-12 grid-cols-3 items-center px-3 md:px-4 rounded-2xl backdrop-blur-md",
               scrolled ? "bg-neutral-900/45" : "bg-neutral-900/35",
-              // subtle outline & soft drop shadow
               "ring-1 ring-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.28)]"
             )}
           >
-            {/* Left: burger */}
+            {/* Burger */}
             <div className="flex items-center">
               <button
                 aria-label="Open menu"
@@ -58,7 +48,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Center: brand (tracking & size tuned to mock) */}
+            {/* Brand */}
             <div className="flex items-center justify-center">
               <Link
                 to="/"
@@ -69,12 +59,12 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Right: compact gold pill */}
+            {/* Contact pill */}
             <div className="flex items-center justify-end">
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="hidden sm:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-[0_2px_10px_rgba(0,0,0,0.25)] hover:opacity-90"
+                className="hidden sm:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-md hover:opacity-90"
               >
                 Contact Us
               </Link>
@@ -83,27 +73,37 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Left drawer with all items */}
-      <Transition show={open}>
+      {/* Drawer */}
+      <Transition show={open} as={Fragment}>
         <Dialog onClose={setOpen} className="relative z-50">
+          {/* Backdrop */}
           <Transition.Child
-            enter="transition-opacity duration-200"
-            enterFrom="opacity-0" enterTo="opacity-100"
-            leave="transition-opacity duration-150"
-            leaveFrom="opacity-100" leaveTo="opacity-0"
+            as={Fragment}
+            enter="ease-out duration-200"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
             <div className="fixed inset-0 bg-black/60" />
           </Transition.Child>
 
+          {/* Drawer panel */}
           <Transition.Child
-            enter="transition duration-200 ease-out"
-            enterFrom="-translate-x-full" enterTo="translate-x-0"
-            leave="transition duration-150 ease-in"
-            leaveFrom="translate-x-0" leaveTo="-translate-x-full"
+            as={Fragment}
+            enter="ease-out duration-300 transform"
+            enterFrom="-translate-x-full"
+            enterTo="translate-x-0"
+            leave="ease-in duration-200 transform"
+            leaveFrom="translate-x-0"
+            leaveTo="-translate-x-full"
           >
             <Dialog.Panel className="fixed inset-y-0 left-0 w-full max-w-xs bg-[#0b0f15] ring-1 ring-white/10 shadow-2xl">
               <div className="flex items-center justify-between px-4 py-4">
-                <span className="text-sm font-semibold tracking-widest text-white">DUKIYA</span>
+                <span className="text-sm font-semibold tracking-widest text-white">
+                  DUKIYA
+                </span>
                 <button
                   onClick={() => setOpen(false)}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-white/10"
@@ -123,7 +123,9 @@ export default function Navbar() {
                         className={({ isActive }) =>
                           clsx(
                             "block rounded-lg px-3 py-2 text-sm",
-                            isActive ? "text-white bg-white/10" : "text-white/85 hover:bg-white/10"
+                            isActive
+                              ? "text-white bg-white/10"
+                              : "text-white/85 hover:bg-white/10"
                           )
                         }
                       >
