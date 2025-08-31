@@ -32,27 +32,6 @@ function AboutHero() {
     >
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Top bar */}
-      <header className="relative z-10 flex items-center justify-between px-4 md:px-8 py-4">
-        <button
-          aria-label="Open menu"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-white/10 ring-1 ring-white/20 backdrop-blur"
-        >
-          <Menu className="text-white" size={20} />
-        </button>
-
-        <div className="text-white/95 tracking-[0.35em] text-sm md:text-base font-semibold">
-          DUKIYA
-        </div>
-
-        <Link
-          to="/contact"
-          className="rounded-md bg-[#b4956a] px-4 py-2 text-xs md:text-sm font-semibold text-black hover:opacity-90 transition"
-        >
-          Contact Us
-        </Link>
-      </header>
-
       {/* Headline */}
       <div className="relative z-10 flex items-center justify-center px-4 md:px-8">
         <h1 className="my-8 md:my-12 lg:my-16 max-w-5xl text-center font-serif text-white drop-shadow-sm text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight">
