@@ -87,7 +87,7 @@ const Contact = () => {
         </div>
 
         {/* FAQ Accordion */}
-      /
+      
       </section>
 
       {/* ---------------- EXPRESS INTEREST SECTION ---------------- */}
