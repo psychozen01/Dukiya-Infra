@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import hero from "@/assets/about/hero.svg";
 import bg1 from "@/assets/about/bg1.svg";
-import { Menu} from "lucide-react";
 import { ChevronLeft, ChevronRight, Facebook, Instagram, Twitter, Linkedin, Send } from "lucide-react";
 import aboutImg1 from "@/assets/about/img1.svg";
 import founderImg from "@/assets/about/user.svg";

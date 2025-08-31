@@ -1,4 +1,3 @@
-import React from "react";
 import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import user1 from "../assets/testimonial/user1.svg";
 import user2 from "../assets/testimonial/user2.svg";
