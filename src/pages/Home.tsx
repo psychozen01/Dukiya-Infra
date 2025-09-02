@@ -6,7 +6,6 @@ import i1 from "@/assets/home/img3.svg"; // feature (tall)
 import i2 from "@/assets/home/img4.svg"; // small
 import i3 from "@/assets/home/img5.svg"; // small
 import i4 from "@/assets/home/img6.svg"; // wide
-import bg1 from "@/assets/home/bg1.svg";   // section background
 import img7 from "@/assets/home/img7.svg"; // blog card image
 import { Calendar, BookOpen, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useRef } from "react";
