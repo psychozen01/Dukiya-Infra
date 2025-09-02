@@ -82,9 +82,10 @@ const Footer: FC = () => {
           </div>
 
           {/* Follow Us */}
+          {/* Follow Us */}
           <div>
             <h4 className="font-serif text-2xl text-[#c2a579]">Follow Us on</h4>
-            <div className="mt-4 flex flex-col gap-3">
+            <div className="mt-4 flex flex-wrap gap-3">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -97,6 +98,7 @@ const Footer: FC = () => {
               ))}
             </div>
           </div>
+
         </div>
 
         {/* Divider */}

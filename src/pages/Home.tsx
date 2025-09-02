@@ -11,7 +11,7 @@ import img7 from "@/assets/home/img7.svg"; // blog card image
 import { Calendar, BookOpen, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
-import type { FormEvent } from "react"; 
+import type { FormEvent } from "react";
 // import the types
 import type { LucideIcon } from "lucide-react";
 import { Search } from "lucide-react";
@@ -40,11 +40,11 @@ export default function Home() {
       <HorizonSection />
 
       {/* Premium Properties */}
-      <PremiumProperties/>
-      {/* Recent Blogs */}
-      <RecentBlogs/>
+      <PremiumProperties />
       {/* form */}
-      <ExpressInterest/>
+      <ExpressInterest />
+      {/* Recent Blogs */}
+      <RecentBlogs />
     </main>
   );
 }
@@ -82,8 +82,8 @@ function Hero() {
               <button
                 key={c}
                 className={`px-5 py-2 rounded-md text-sm font-medium ${i === 0
-                    ? "bg-[#b4956a] text-black"
-                    : "bg-transparent text-white border border-white/20 hover:bg-white/10"
+                  ? "bg-[#b4956a] text-black"
+                  : "bg-transparent text-white border border-white/20 hover:bg-white/10"
                   }`}
               >
                 {c}
@@ -323,19 +323,15 @@ function RecentBlogs() {
   };
 
   return (
-    <section
-      className="relative isolate py-16 md:py-20 text-white"
-      style={{ backgroundImage: `url(${bg1})` }}
-    >
-      {/* dark veil for readability */}
-      <div className="absolute inset-0 -z-10 bg-black/5" />
+<section className="relative isolate py-16 md:py-20 bg-gradient-to-b from-[#f8f8f8] to-[#eaeaea] text-neutral-900">
+
 
       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
         {/* Heading */}
         <div className="text-center">
           <h2 className="font-serif text-3xl md:text-5xl font-semibold">Recent Blogs</h2>
-          <p className="mx-auto mt-3 max-w-3xl text-sm md:text-[15px] text-white/80">
-            A vision that transcends property and space , where unmatched craftsmanship inspires elegance,
+          <p className="mx-auto mt-3 max-w-3xl text-sm md:text-[15px] text-neutral-600">
+            A vision that transcends property and space, where unmatched craftsmanship inspires elegance,
             and innovation to enrich lives. Imagining the extraordinary and building it into reality.
           </p>
         </div>
