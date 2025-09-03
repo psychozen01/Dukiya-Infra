@@ -25,44 +25,67 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Floating navbar */}
-      <header className="fixed inset-x-0 top-2 z-50">
-        <div className="mx-3 md:mx-4">
+      <header className="fixed inset-x-0 top-2 z-50 pointer-events-auto">
+        <div className="mx-3 md:mx-6">
+          {/* Container with rounded background */}
           <div
             className={clsx(
-              "grid h-12 grid-cols-3 items-center px-3 md:px-4 rounded-2xl backdrop-blur-md",
+              "flex items-center justify-between h-12 px-3 md:px-4 rounded-2xl backdrop-blur-md",
               scrolled ? "bg-neutral-900/45" : "bg-neutral-900/35",
               "ring-1 ring-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.28)]"
             )}
           >
-            {/* Burger */}
-            <div className="flex items-center">
+            {/* LEFT: burger (mobile) + brand (always left on larger screens) */}
+            <div className="flex items-center gap-3 min-w-0">
+              {/* Mobile burger */}
               <button
                 aria-label="Open menu"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-white/10"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-white/10 md:hidden"
               >
                 <Menu size={20} className="text-white" />
               </button>
-            </div>
 
-            {/* Brand */}
-            <div className="flex items-center justify-center">
+              {/* Brand — visible always, but slightly smaller on mobile */}
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
-                className="select-none text-[12px] md:text-[13px] font-semibold tracking-[0.28em] text-white"
+                className="select-none text-[13px] md:text-[14px] font-semibold tracking-[0.28em] text-white whitespace-nowrap"
               >
                 DUKIYA
               </Link>
             </div>
 
-            {/* Contact pill */}
-            <div className="flex items-center justify-end">
+            {/* CENTER: nav links (hidden on mobile) */}
+            <nav className="hidden md:flex items-center justify-center flex-1">
+              <ul className="flex items-center gap-4">
+                {links.map((l) => (
+                  <li key={l.to}>
+                    <NavLink
+                      to={l.to}
+                      end={l.to === "/"}
+                      className={({ isActive }) =>
+                        clsx(
+                          "px-3 py-1 rounded-md text-sm font-medium transition inline-block",
+                          isActive
+                            ? "text-white bg-white/10"
+                            : "text-white/80 hover:bg-white/7 hover:text-white"
+                        )
+                      }
+                    >
+                      {l.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* RIGHT: contact pill (hidden on small) */}
+            <div className="flex items-center justify-end min-w-0">
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="hidden sm:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-md hover:opacity-90"
+                className="hidden md:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-md hover:opacity-90 whitespace-nowrap"
               >
                 Contact Us
               </Link>
@@ -71,7 +94,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Drawer */}
+      {/* Drawer for mobile */}
       <Transition show={open} as={Fragment}>
         <Dialog onClose={setOpen} className="relative z-50">
           {/* Backdrop */}
