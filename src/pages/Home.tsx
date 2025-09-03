@@ -74,7 +74,7 @@ function Hero() {
       </div>
 
       {/* bottom search panel */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 -mb-12">
+      {/* <div className="relative z-10 w-full max-w-5xl mx-auto px-4 -mb-12">
         <div className="rounded-2xl bg-black/5 backdrop-blur-md p-4 shadow-lg">
           <div className="flex justify-center gap-3 mb-3 flex-wrap">
             {categories.map((c, i) => (
@@ -101,7 +101,7 @@ function Hero() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
