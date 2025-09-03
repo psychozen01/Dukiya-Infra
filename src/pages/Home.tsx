@@ -13,8 +13,6 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 // import the types
 import type { LucideIcon } from "lucide-react";
-import { Search } from "lucide-react";
-const categories = ["Rent", "Buy", "New Projects", "Commercial"];
 import {
   Facebook,
   Instagram,
