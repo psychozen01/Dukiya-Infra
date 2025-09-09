@@ -1,5 +1,5 @@
-import{ useState } from "react";
-import type { FormEvent } from "react"; 
+import { useState } from "react";
+import type { FormEvent } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -18,26 +18,27 @@ import bg from "../assets/FAQ/bg.svg";
 
 const faqs = [
   {
-    q: "What is the difference between leasehold and freehold properties?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque vitae cras nunc sem cursus molestie amet, condimentum. Amet, placerat nisl, venenatis, sed placerat eget. Vulputate viverra fames id viverra a amet.",
+    q: "What types of properties does Dukiya Infra offer?",
+    a: "We present an exclusive collection of properties, including premium commercial spaces and residential projects like villas, apartments, and farmhouses, all crafted to align with your lifestyle and requirements.",
   },
   {
-    q: "What is the difference between leasehold and freehold properties?",
-    a: "Another answer text goes here...",
+    q: "How long has Dukiya Infra been in the real estate business?",
+    a: "With over 25+ years of experience, Dukiya Infra has built a strong reputation in Jaipur’s real estate market by delivering quality projects on time and earning the trust of its customers through dedicated service.",
   },
   {
-    q: "What is the difference between leasehold and freehold properties?",
-    a: "More details provided here...",
+    q: "What are the key locations of Dukiya Infra properties?",
+    a: "Our properties are located in prime areas like Ajmer Road, Mansarovar, Jagatpura, Tonk Road, and near Jaipur International Airport, ensuring convenience and access to essential amenities.",
   },
   {
-    q: "What is the difference between leasehold and freehold properties?",
-    a: "Sample content for FAQ...",
+    q: "Do you offer investment opportunities in your projects?",
+    a: "Unlock premium investment opportunities with promising returns across residential and commercial properties. Connect with us to know more about our latest and upcoming projects.",
   },
   {
-    q: "What is the difference between leasehold and freehold properties?",
-    a: "Extra FAQ answer example...",
+    q: "How can I schedule a site visit to one of your properties?",
+    a: "Schedule a site visit easily by filling out the form on our Contact page or by calling us at 014131265522. Our team will gladly arrange a suitable time for you to view our properties.",
   },
 ];
+
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -119,9 +120,8 @@ const FAQ = () => {
           {faqs.map((item, i) => (
             <div
               key={i}
-              className={`rounded-md shadow-sm border border-neutral-200 overflow-hidden transition ${
-                openIndex === i ? "bg-[#efe7de]/70" : "bg-neutral-50"
-              }`}
+              className={`rounded-md shadow-sm border border-neutral-200 overflow-hidden transition ${openIndex === i ? "bg-[#efe7de]/70" : "bg-neutral-50"
+                }`}
             >
               <button
                 onClick={() => toggleFAQ(i)}

@@ -197,18 +197,18 @@ export function PremiumProperties() {
                 <figure>
                   <Card image={i2} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
                   <CaptionRow
-                    leftTitle="Kardhani Prime At 9"
+                    leftTitle="SIDDHI HOMES REALTY"
                     leftSub="Dukan, Jaipur"
-                    rightTitle="Grand Polo Club & Resort"
+                    rightTitle="Valenza"
                   />
                 </figure>
 
                 <figure>
                   <Card image={i3} h="h-[180px] md:h-[190px]" alt="Kardhani Prime At 9 — Dukan, Jaipur" />
                   <CaptionRow
-                    leftTitle="Kardhani Prime At 9"
-                    leftSub="Dukan, Jaipur"
-                    rightTitle="Grand Polo Club & Resort"
+                    leftTitle="SHREE SHYAM ENTERPRISES"
+                    leftSub="THE CITY PARK"
+                    rightTitle="PARK VIEW by SIDDHI HOMES"
                   />
                 </figure>
               </div>
@@ -217,9 +217,9 @@ export function PremiumProperties() {
               <figure className="md:col-span-2">
                 <Card image={i4} h="h-[220px] md:h-[240px]" alt="Grand Polo Club & Resort" />
                 <CaptionRow
-                  leftTitle="Kardhani Prime At 9"
-                  leftSub="Dukan, Jaipur"
-                  rightTitle="Grand Polo Club & Resort"
+                  leftTitle="ARD BUILDHOME PRIVATE LIMITED"
+                  leftSub="VANTARA"
+                  rightTitle="THE EMERALD-II"
                   rightAlign
                 />
               </figure>

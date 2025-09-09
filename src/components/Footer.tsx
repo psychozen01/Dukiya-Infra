@@ -26,13 +26,14 @@ const Footer: FC = () => {
     "The Alba Residences, Dorchester Collection, Dubai",
   ];
 
-  const socials: { icon: LucideIcon; label: string; href: string }[] = [
-    { icon: Facebook, label: "Facebook", href: "#" },
-    { icon: Instagram, label: "Instagram", href: "#" },
-    { icon: Twitter, label: "Twitter/X", href: "#" },
-    { icon: Linkedin, label: "LinkedIn", href: "#" },
-    { icon: Send, label: "Telegram", href: "#" },
+    const socials: { icon: LucideIcon; label: string; href: string }[] = [
+    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61579187717172" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/dukiya_infra/" },
+    { icon: Twitter, label: "Twitter/X", href: "#" }, // 🔹 replace later if you have one
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/dukiya-infra-private-limited/" },
+    { icon: Send, label: "Telegram", href: "#" }, // 🔹 replace later if you have one
   ];
+
 
   return (
     <footer
