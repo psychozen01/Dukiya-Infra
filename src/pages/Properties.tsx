@@ -285,8 +285,12 @@ export default function Properties(): JSX.Element {
                         className="inline-flex items-center gap-2 bg-black/75 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-black/80 transition"
                         aria-label="WhatsApp"
                       >
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] inline-block" />
-                        <span>WHATSAPP</span>
+                        <img
+                          alt=""
+                          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                          className="h-4 w-4"
+                        />
+                        <span>WhatsApp</span>
                       </a>
 
                       <button className="bg-[#c2a579] text-black px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:opacity-95 transition">
@@ -302,7 +306,7 @@ export default function Properties(): JSX.Element {
           </div>
         )}
 
-         <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
+        <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h3 className="font-serif text-xl md:text-2xl">
@@ -346,7 +350,7 @@ export default function Properties(): JSX.Element {
           </div>
         </div>
       </main>
-      
+
     </div>
   );
 }
