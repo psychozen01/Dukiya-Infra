@@ -301,7 +301,52 @@ export default function Properties(): JSX.Element {
 
           </div>
         )}
+
+         <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
+          <div className="grid gap-6 md:grid-cols-2 md:items-center">
+            <div>
+              <h3 className="font-serif text-xl md:text-2xl">
+                Instant <span className="text-[#b4956a]">Video Call</span> and{" "}
+                <span className="text-[#b4956a]">WhatsApp Chat</span>
+              </h3>
+              <p className="mt-2 text-sm text-neutral-700">
+                Create team, join contests & win exciting cash prizes.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
+              <a
+                href="https://meet.google.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-black hover:opacity-90"
+              >
+                <img
+                  alt=""
+                  src="https://www.gstatic.com/images/branding/product/1x/meet_2020q4_48dp.png"
+                  className="h-4 w-4"
+                />
+                Google Meet
+              </a>
+
+              <a
+                href="https://wa.me/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black ring-1 ring-black/10 hover:bg-white/90"
+              >
+                <img
+                  alt=""
+                  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                  className="h-4 w-4"
+                />
+                WhatsApp Chat
+              </a>
+            </div>
+          </div>
+        </div>
       </main>
+      
     </div>
   );
 }
