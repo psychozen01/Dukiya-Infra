@@ -1,39 +1,71 @@
+
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import bg from "../assets/property/bg.svg";
 import { Search } from "lucide-react";
 
-const ACCENT = "#c2a579";
 const WHATSAPP_NUMBER = "8860643975";
-const tabs = ["Buy", "Sell", "New Projects", "Plot", "Commercial"];
+const tabs = ["Buy", "Sell", "New Projects", "Plot", "Commercial"] as const;
 
-export default function Properties() {
-  const [active, setActive] = useState(tabs[0]);
-  const [q, setQ] = useState("");
-  const [type, setType] = useState("");
-  const [beds, setBeds] = useState("");
-  const [page, setPage] = useState(1);
+type Tab = typeof tabs[number];
+
+interface Property {
+  _id: string;
+  title?: string;
+  location?: string;
+  images?: { url: string }[];
+  status?: string;
+  deliveryDate?: string;
+  bedrooms?: string;
+  area?: string;
+  price?: string;
+}
+
+interface PropertiesResponse {
+  page: number;
+  perPage: number;
+  total: number;
+  items: Property[];
+}
+
+export default function Properties(): JSX.Element {
+  const [active, setActive] = useState<Tab>(tabs[0]);
+  const [q, setQ] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [beds, setBeds] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
   const perPage = 12;
 
-  const [data, setData] = useState({ page: 1, perPage, total: 0, items: [] });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState<PropertiesResponse>({
+    page: 1,
+    perPage,
+    total: 0,
+    items: [],
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const API_BASE =
-    import.meta.env.VITE_API_URL || "https://dukiya-server.onrender.com";
+  const API_BASE: string =
+    (import.meta as any).env?.VITE_API_URL || "https://dukiya-server.onrender.com";
 
-  const fetchProperties = async (p = 1, filters = {}) => {
+  const fetchProperties = async (p = 1, filters: Record<string, any> = {}) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${API_BASE}/api/properties`, {
+      const res = await axios.get<PropertiesResponse>(`${API_BASE}/api/properties`, {
         params: { page: p, perPage, ...filters },
       });
       setData(res.data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(
-        err.response?.data?.error || err.message || "Failed to load properties"
-      );
+      // safe extraction of error message
+      let message = "Failed to load properties";
+      if (axios.isAxiosError(err)) {
+        message = (err.response?.data as any)?.error || err.message || message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -44,7 +76,7 @@ export default function Properties() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, active]);
 
-  const onSearch = (e) => {
+  const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setPage(1);
     fetchProperties(1, { q, type, beds, status: active });
@@ -92,9 +124,10 @@ export default function Properties() {
                         fetchProperties(1, { q, type, beds, status: t });
                       }}
                       className={`px-4 py-2 rounded-md text-sm font-medium transition ${active === t
-                          ? "bg-[#c2a579] text-black"
-                          : "text-white border border-white/10 hover:bg-white/5"
+                        ? "bg-[#c2a579] text-black"
+                        : "text-white border border-white/10 hover:bg-white/5"
                         }`}
+                      aria-pressed={active === t}
                     >
                       {t}
                     </button>
@@ -160,8 +193,6 @@ export default function Properties() {
                 </button>
               </form>
             </div>
-
-
           </div>
         </div>
       </section>
@@ -170,7 +201,6 @@ export default function Properties() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-96 md:mt-48 mb-16">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            {/* Replace with svg if you prefer */}
             <span className="text-xl">🏠</span>
             <h3 className="text-lg md:text-2xl font-semibold text-gray-800">
               Properties for sale in Jaipur
@@ -182,7 +212,9 @@ export default function Properties() {
         {loading ? (
           <div className="py-20 text-center text-gray-500">Loading properties…</div>
         ) : error ? (
-          <div className="py-12 text-center text-red-600 bg-red-50 rounded-md">{error}</div>
+          <div className="py-12 text-center text-red-600 bg-red-50 rounded-md">
+            {error}
+          </div>
         ) : items.length === 0 ? (
           <div className="py-12 text-center text-gray-500">No properties found.</div>
         ) : (
@@ -190,53 +222,74 @@ export default function Properties() {
             {items.map((p) => (
               <article
                 key={p._id}
-                className="relative rounded-xl overflow-hidden shadow-lg bg-white"
+                className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-transparent"
                 aria-label={p.title || "property"}
               >
-                {/* top image */}
-                <div className="w-full h-72 sm:h-72 md:h-72 lg:h-72 overflow-hidden rounded-t-xl">
-                  <img
-                    src={p.images?.[0]?.url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'/%3E"}
-                    alt={p.title}
-                    className="w-full h-full object-cover"
-                  />
+                {/* image as background (fills the card area and respects rounded corners) */}
+                <div
+                  className="w-full h-72 bg-center bg-cover"
+                  style={{
+                    backgroundImage: `url(${p.images?.[0]?.url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'/%3E"})`,
+                  }}
+                  role="img"
+                  aria-label={p.title || "property image"}
+                />
+
+                {/* subtle gradient at bottom for readable text; rounded so it doesn't show square corners */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-2xl" />
+
+                {/* small stacked pill badges top-left */}
+                <div className="absolute top-3 left-3 z-20 flex flex-col gap-2">
+                  {p.status && (
+                    <span className="bg-black/70 text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-sm">
+                      {p.status}
+                    </span>
+                  )}
+                  {p.deliveryDate && (
+                    <span className="bg-black/70 text-white text-[11px] font-medium px-3 py-1 rounded-full shadow-sm">
+                      Delivery Date: {p.deliveryDate}
+                    </span>
+                  )}
                 </div>
 
-                {/* gradient overlay for contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                {/* bottom overlay content */}
+                <div className="absolute inset-x-0 bottom-0 px-5 pb-5 z-30">
+                  <div className="rounded-b-2xl p-4">
+                    {/* Title (serif) */}
+                    <h4 className="text-lg md:text-xl font-serif font-semibold text-white truncate leading-tight">
+                      {p.title}
+                    </h4>
 
-                {/* badges */}
-                <div className="absolute top-3 left-3 text-xs text-white bg-black/70 px-2 py-1 rounded">
-                  {p.status || "Status"}
-                </div>
-                {p.deliveryDate && (
-                  <div className="absolute top-3 right-3 text-xs text-white bg-black/70 px-2 py-1 rounded">
-                    Delivery: {p.deliveryDate}
-                  </div>
-                )}
+                    {/* subtitle / location (muted) */}
+                    {p.location && (
+                      <p className="text-xs md:text-sm text-white/80 mt-1 truncate">
+                        {p.location}
+                      </p>
+                    )}
 
-                {/* content area (placed on top of the bottom of image, like the reference) */}
-                <div className="absolute inset-x-0 bottom-0 px-4 pb-4">
-                  <div className=" via-transparent to-transparent rounded-b-xl p-4">
-                    <h4 className="text-lg font-semibold text-white truncate">{p.title}</h4>
-                    <p className="text-sm text-white/80 mt-1 truncate">{p.location}</p>
-
-                    <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-white/80">
+                    {/* meta row */}
+                    <div className="mt-2 flex items-center gap-2 text-xs text-white/80">
                       <span>{p.bedrooms || "-"}</span>
+                      <span>|</span>
                       <span>{p.area || "-"}</span>
+                      <span>|</span>
                       <span>{p.price || "-"}</span>
                     </div>
 
-                    <div className="mt-4 flex flex-wrap gap-3">
+                    {/* action row: WhatsApp + Book Now */}
+                    <div className="mt-4 flex items-center justify-between gap-3">
                       <a
                         href={`https://wa.me/${WHATSAPP_NUMBER}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="bg-[#c2a579] text-black px-3 py-2 rounded-md text-xs font-semibold hover:opacity-90"
+                        className="inline-flex items-center gap-2 bg-black/75 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-black/80 transition"
+                        aria-label="WhatsApp"
                       >
-                        WhatsApp
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] inline-block" />
+                        <span>WHATSAPP</span>
                       </a>
-                      <button className="bg-white text-black px-3 py-2 rounded-md text-xs font-semibold hover:opacity-90">
+
+                      <button className="bg-[#c2a579] text-black px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:opacity-95 transition">
                         Book Now
                       </button>
                     </div>
@@ -244,6 +297,8 @@ export default function Properties() {
                 </div>
               </article>
             ))}
+
+
           </div>
         )}
       </main>
