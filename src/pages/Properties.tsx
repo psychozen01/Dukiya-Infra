@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, type JSX } from "react";
 import axios from "axios";
 import bg from "../assets/property/bg.svg";
 import { Search } from "lucide-react";
