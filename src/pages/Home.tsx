@@ -6,7 +6,8 @@ import i1 from "@/assets/home/img3.svg"; // feature (tall)
 import i2 from "@/assets/home/img4.svg"; // small
 import i3 from "@/assets/home/img5.svg"; // small
 import i4 from "@/assets/home/img6.svg"; // wide
-import img7 from "@/assets/home/img7.svg"; // blog card image
+import { useEffect} from "react";
+import {  X,} from "lucide-react";
 import { Calendar, BookOpen, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
@@ -276,112 +277,327 @@ function CaptionRow({
 
 // Recent Blogs
 
-function RecentBlogs() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
+// function RecentBlogs() {
+//   const scrollerRef = useRef<HTMLDivElement>(null);
 
-  const blogs = [
-    {
-      id: 1,
-      title:
-        "Opportunities & Challenges before the Manufacturers of Guar Gum & Cassia Gum Derivatives",
-      excerpt:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exploring the current market dynamics and future prospects in guar gum manufacturing.",
-      read: "3.5k read",
-      date: "14 May 2025",
-      image: img7,
-    },
-    {
-      id: 2,
-      title:
-        "Opportunities & Challenges before the Manufacturers of Guar Gum & Cassia Gum Derivatives",
-      excerpt:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exploring the current market dynamics and future prospects in guar gum manufacturing.",
-      read: "3.5k read",
-      date: "14 May 2025",
-      image: img7,
-    },
-    {
-      id: 3,
-      title:
-        "Opportunities & Challenges before the Manufacturers of Guar Gum & Cassia Gum Derivatives",
-      excerpt:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exploring the current market dynamics and future prospects in guar gum manufacturing.",
-      read: "3.5k read",
-      date: "14 May 2025",
-      image: img7,
-    },
-  ];
+//   const blogs = [
+//     {
+//       id: 1,
+//       title:
+//         "Opportunities & Challenges before the Manufacturers of Guar Gum & Cassia Gum Derivatives",
+//       excerpt:
+//         "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exploring the current market dynamics and future prospects in guar gum manufacturing.",
+//       read: "3.5k read",
+//       date: "14 May 2025",
+//       image: img7,
+//     },
+//     {
+//       id: 2,
+//       title:
+//         "Opportunities & Challenges before the Manufacturers of Guar Gum & Cassia Gum Derivatives",
+//       excerpt:
+//         "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exploring the current market dynamics and future prospects in guar gum manufacturing.",
+//       read: "3.5k read",
+//       date: "14 May 2025",
+//       image: img7,
+//     },
+//     {
+//       id: 3,
+//       title:
+//         "Opportunities & Challenges before the Manufacturers of Guar Gum & Cassia Gum Derivatives",
+//       excerpt:
+//         "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exploring the current market dynamics and future prospects in guar gum manufacturing.",
+//       read: "3.5k read",
+//       date: "14 May 2025",
+//       image: img7,
+//     },
+//   ];
+
+//   const scrollByViewport = (dir: "prev" | "next") => {
+//     const el = scrollerRef.current;
+//     if (!el) return;
+//     const amount = el.clientWidth; // one viewport
+//     el.scrollBy({ left: dir === "next" ? amount : -amount, behavior: "smooth" });
+//   };
+
+//   return (
+// <section className="relative isolate py-16 md:py-20 bg-gradient-to-b from-[#f8f8f8] to-[#eaeaea] text-neutral-900">
+
+
+//       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
+//         {/* Heading */}
+//         <div className="text-center">
+//           <h2 className="font-serif text-3xl md:text-5xl font-semibold">Recent Blogs</h2>
+//           <p className="mx-auto mt-3 max-w-3xl text-sm md:text-[15px] text-neutral-600">
+//             A vision that transcends property and space, where unmatched craftsmanship inspires elegance,
+//             and innovation to enrich lives. Imagining the extraordinary and building it into reality.
+//           </p>
+//         </div>
+
+//         {/* Cards */}
+//         <div className="mt-8 md:mt-10">
+//           {/* mobile/tablet: horizontal snap carousel; desktop: 3-up grid */}
+//           <div
+//             ref={scrollerRef}
+//             className="group relative grid grid-flow-col auto-cols-[85%] gap-4 overflow-x-auto pb-4 pr-4 md:overflow-visible md:grid-cols-3 md:auto-cols-auto md:gap-6 md:pb-0"
+//             style={{ scrollSnapType: "x mandatory" }}
+//           >
+//             {blogs.map((b) => (
+//               <article
+//                 key={b.id}
+//                 className="scroll-ml-4 scroll-snap-align-start rounded-2xl bg-white text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.25)] ring-1 ring-white/10 md:scroll-ml-0"
+//                 style={{ scrollSnapAlign: "start" }}
+//               >
+//                 <div className="p-3 md:p-4">
+//                   <div className="overflow-hidden rounded-xl">
+//                     <img src={b.image} alt={b.title} className="h-40 w-full object-cover md:h-44" />
+//                   </div>
+
+//                   <h3 className="mt-3 text-[15px] font-semibold leading-snug">
+//                     {b.title}
+//                   </h3>
+//                   <p className="mt-2 text-[13px] leading-6 text-neutral-600">
+//                     {b.excerpt}
+//                   </p>
+
+//                   {/* Meta + CTA */}
+//                   <div className="mt-4 flex items-center justify-between text-[12px] text-neutral-500">
+//                     <div className="flex items-center gap-4">
+//                       <span className="inline-flex items-center gap-1">
+//                         <BookOpen size={14} /> {b.read}
+//                       </span>
+//                       <span className="inline-flex items-center gap-1">
+//                         <Calendar size={14} /> {b.date}
+//                       </span>
+//                     </div>
+//                     <a
+//                       href="/blogs"
+//                       className="inline-flex items-center gap-1 font-medium text-[#b4956a] hover:opacity-90"
+//                     >
+//                       View More <ArrowRight size={14} />
+//                     </a>
+//                   </div>
+//                 </div>
+//               </article>
+//             ))}
+//           </div>
+
+//           {/* Carousel controls (hidden on md+) */}
+//           <div className="mt-4 flex items-center justify-between md:hidden">
+//             <div className="flex gap-2">
+//               <button
+//                 onClick={() => scrollByViewport("prev")}
+//                 className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-black/60 ring-1 ring-white/20"
+//                 aria-label="Previous"
+//               >
+//                 <ChevronLeft size={16} />
+//               </button>
+//               <button
+//                 onClick={() => scrollByViewport("next")}
+//                 className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-black/60 ring-1 ring-white/20"
+//                 aria-label="Next"
+//               >
+//                 <ChevronRight size={16} />
+//               </button>
+//             </div>
+
+//             {/* Dots */}
+//             <div className="flex items-center gap-1.5">
+//               {blogs.map((b) => (
+//                 <span key={b.id} className="h-1.5 w-1.5 rounded-full bg-white/60" />
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Desktop “View All” */}
+//           <div className="mt-8 hidden justify-center md:flex">
+//             <a
+//               href="/blogs"
+//               className="inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90"
+//             >
+//               View All Blogs
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// new 
+
+type Blog = {
+  _id: string;
+  title: string;
+  excerpt: string;
+  images?: { url: string }[];
+  publishedAt: string;
+  slug: string;
+};
+function RecentBlogs() {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showAllModal, setShowAllModal] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // fetch blogs
+  useEffect(() => {
+    let mounted = true;
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("https://dukiya-server.onrender.com/api/blogs");
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        const data = await res.json();
+        if (!data.success || !Array.isArray(data.items)) {
+          throw new Error("Unexpected API response");
+        }
+        const sorted = data.items.sort(
+          (a: Blog, b: Blog) =>
+            new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+        if (mounted) setBlogs(sorted);
+      } catch (err: any) {
+        console.error("Failed to fetch blogs:", err);
+        if (mounted) setError("Failed to load blogs. Try again later.");
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+    fetchBlogs();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  // lock body scroll
+  useEffect(() => {
+    const locked = showAllModal || selectedBlog !== null;
+    document.body.style.overflow = locked ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showAllModal, selectedBlog]);
+
+  // esc close
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (selectedBlog) setSelectedBlog(null);
+        else if (showAllModal) setShowAllModal(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedBlog, showAllModal]);
 
   const scrollByViewport = (dir: "prev" | "next") => {
     const el = scrollerRef.current;
     if (!el) return;
-    const amount = el.clientWidth; // one viewport
+    const amount = el.clientWidth || 320;
     el.scrollBy({ left: dir === "next" ? amount : -amount, behavior: "smooth" });
   };
 
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+
+  const handleOpenBlog = (b: Blog, fromAll: boolean = false) => {
+    if (fromAll) {
+      setShowAllModal(false);
+      setTimeout(() => setSelectedBlog(b), 50);
+    } else {
+      setSelectedBlog(b);
+    }
+  };
+
+  const BlogCard = ({ b, fromAll = false }: { b: Blog; fromAll?: boolean }) => (
+    <article
+      className="scroll-ml-4 scroll-snap-align-start rounded-2xl bg-white text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.25)] ring-1 ring-white/10 md:scroll-ml-0"
+      style={{ scrollSnapAlign: "start" }}
+    >
+      <div className="p-3 md:p-4">
+        <div className="overflow-hidden rounded-xl bg-neutral-100 flex items-center justify-center">
+          <img
+            src={b.images?.[0]?.url ?? "/placeholder.png"}
+            alt={b.title}
+            className="h-40 w-full object-contain md:h-44"
+          />
+        </div>
+
+        <h3 className="mt-3 text-[15px] font-semibold leading-snug">{b.title}</h3>
+
+        <p className="mt-2 text-[13px] leading-6 text-neutral-600 line-clamp-3">
+          {b.excerpt}
+        </p>
+
+        <div className="mt-4 flex items-center justify-between text-[12px] text-neutral-500">
+          <div className="flex items-center gap-4">
+            <span className="inline-flex items-center gap-1">
+              <BookOpen size={14} /> 3 min read
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <Calendar size={14} /> {formatDate(b.publishedAt)}
+            </span>
+          </div>
+          <button
+            onClick={() => handleOpenBlog(b, fromAll)}
+            className="inline-flex items-center gap-1 font-medium text-[#b4956a] hover:opacity-90"
+          >
+            View More <ArrowRight size={14} />
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+
+  if (loading) {
+    return (
+      <section className="py-16 text-center">
+        <p className="text-neutral-600">Loading blogs...</p>
+      </section>
+    );
+  }
+  if (error) {
+    return (
+      <section className="py-16 text-center">
+        <p className="text-red-600">{error}</p>
+      </section>
+    );
+  }
+
   return (
-<section className="relative isolate py-16 md:py-20 bg-gradient-to-b from-[#f8f8f8] to-[#eaeaea] text-neutral-900">
-
-
+    <section className="relative isolate py-16 md:py-20 bg-gradient-to-b from-[#f8f8f8] to-[#eaeaea] text-neutral-900">
       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
         {/* Heading */}
         <div className="text-center">
           <h2 className="font-serif text-3xl md:text-5xl font-semibold">Recent Blogs</h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm md:text-[15px] text-neutral-600">
-            A vision that transcends property and space, where unmatched craftsmanship inspires elegance,
-            and innovation to enrich lives. Imagining the extraordinary and building it into reality.
+            A vision that transcends property and space, where unmatched craftsmanship inspires
+            elegance, and innovation to enrich lives. Imagining the extraordinary and building it into
+            reality.
           </p>
         </div>
 
         {/* Cards */}
         <div className="mt-8 md:mt-10">
-          {/* mobile/tablet: horizontal snap carousel; desktop: 3-up grid */}
           <div
             ref={scrollerRef}
             className="group relative grid grid-flow-col auto-cols-[85%] gap-4 overflow-x-auto pb-4 pr-4 md:overflow-visible md:grid-cols-3 md:auto-cols-auto md:gap-6 md:pb-0"
             style={{ scrollSnapType: "x mandatory" }}
           >
-            {blogs.map((b) => (
-              <article
-                key={b.id}
-                className="scroll-ml-4 scroll-snap-align-start rounded-2xl bg-white text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.25)] ring-1 ring-white/10 md:scroll-ml-0"
-                style={{ scrollSnapAlign: "start" }}
-              >
-                <div className="p-3 md:p-4">
-                  <div className="overflow-hidden rounded-xl">
-                    <img src={b.image} alt={b.title} className="h-40 w-full object-cover md:h-44" />
-                  </div>
-
-                  <h3 className="mt-3 text-[15px] font-semibold leading-snug">
-                    {b.title}
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-6 text-neutral-600">
-                    {b.excerpt}
-                  </p>
-
-                  {/* Meta + CTA */}
-                  <div className="mt-4 flex items-center justify-between text-[12px] text-neutral-500">
-                    <div className="flex items-center gap-4">
-                      <span className="inline-flex items-center gap-1">
-                        <BookOpen size={14} /> {b.read}
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <Calendar size={14} /> {b.date}
-                      </span>
-                    </div>
-                    <a
-                      href="/blogs"
-                      className="inline-flex items-center gap-1 font-medium text-[#b4956a] hover:opacity-90"
-                    >
-                      View More <ArrowRight size={14} />
-                    </a>
-                  </div>
-                </div>
-              </article>
+            {blogs.slice(0, 3).map((b) => (
+              <div key={b._id}>
+                <BlogCard b={b} />
+              </div>
             ))}
           </div>
 
-          {/* Carousel controls (hidden on md+) */}
+          {/* Mobile controls */}
           <div className="mt-4 flex items-center justify-between md:hidden">
             <div className="flex gap-2">
               <button
@@ -399,26 +615,99 @@ function RecentBlogs() {
                 <ChevronRight size={16} />
               </button>
             </div>
-
-            {/* Dots */}
             <div className="flex items-center gap-1.5">
-              {blogs.map((b) => (
-                <span key={b.id} className="h-1.5 w-1.5 rounded-full bg-white/60" />
+              {blogs.slice(0, 3).map((b) => (
+                <span key={b._id} className="h-1.5 w-1.5 rounded-full bg-white/60" />
               ))}
             </div>
           </div>
 
           {/* Desktop “View All” */}
           <div className="mt-8 hidden justify-center md:flex">
-            <a
-              href="/blogs"
+            <button
+              onClick={() => setShowAllModal(true)}
               className="inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90"
             >
               View All Blogs
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* All Blogs Modal */}
+      {showAllModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div
+            className="absolute inset-0 bg-black/70"
+            onClick={() => setShowAllModal(false)}
+          />
+          <div className="relative z-10 w-full max-w-6xl rounded-xl bg-white p-6 shadow-lg overflow-y-auto max-h-[90vh]">
+            <button
+              onClick={() => setShowAllModal(false)}
+              className="absolute top-3 right-3 rounded-full bg-black/60 p-1 text-white hover:bg-black"
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+            <h3 className="text-2xl font-semibold mb-4">All Blogs</h3>
+            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+              {blogs.map((b) => (
+                <div key={b._id}>
+                  <BlogCard b={b} fromAll />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Blog Detail Modal */}
+      {selectedBlog && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center px-4">
+          <div
+            className="absolute inset-0 bg-black/70"
+            onClick={() => setSelectedBlog(null)}
+          />
+          <div className="relative z-20 w-full max-w-3xl rounded-xl bg-white p-6 shadow-lg overflow-y-auto max-h-[90vh]">
+            <button
+              onClick={() => setSelectedBlog(null)}
+              className="absolute top-3 right-3 rounded-full bg-black/60 p-1 text-white hover:bg-black"
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+            <div className="space-y-4">
+              <div className="overflow-hidden rounded-xl bg-neutral-100 flex items-center justify-center">
+                <img
+                  src={selectedBlog.images?.[0]?.url ?? "/placeholder.png"}
+                  alt={selectedBlog.title}
+                  className="w-full h-56 object-contain rounded-md"
+                />
+              </div>
+              <h2 className="text-2xl font-semibold">{selectedBlog.title}</h2>
+              <div className="flex items-center gap-4 text-sm text-neutral-500">
+                <span className="inline-flex items-center gap-1">
+                  <BookOpen size={14} /> 3 min read
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <Calendar size={14} /> {formatDate(selectedBlog.publishedAt)}
+                </span>
+              </div>
+              <p className="text-neutral-700 whitespace-pre-line">
+                {selectedBlog.excerpt}
+              </p>
+              <div className="flex justify-end">
+                {/* <a
+                  href={`/blogs/${selectedBlog.slug}`}
+                  className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-semibold text-black hover:opacity-90"
+                >
+                  Open Full Post <ArrowRight size={14} />
+                </a> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
