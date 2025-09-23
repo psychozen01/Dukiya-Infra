@@ -149,9 +149,96 @@ function HorizonSection() {
   );
 }
 // premium section
+// export function PremiumProperties() {
+//   return (
+//     <section className="py-16 md:py-20 text-neutral-900">{/* <- force dark text here */}
+//       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
+//         <div className="grid gap-10 md:grid-cols-12">
+//           {/* LEFT: copy */}
+//           <div className="md:col-span-4">
+//             <p className="text-[12px] tracking-wide text-[#b4956a]/85">Properties</p>
+
+//             <h2 className="mt-3 font-serif text-[32px] leading-[1.08] md:text-[40px]">
+//               <span className="text-[#b4956a] font-semibold">PREMIUM</span>
+//               <br />
+//               <span className="font-semibold">PROPERTIES IN THE BEST</span>
+//               <br />
+//               <span className="font-semibold">LOCATIONS</span>
+//             </h2>
+
+//             <p className="mt-4 max-w-[40ch] text-[12px] leading-5 text-neutral-700">
+//               A vision that transcends property and space , where unmatched craftsmanship inspires
+//               elegance and innovation to enrich lives. Imagining the extraordinary and building it
+//               into reality.
+//             </p>
+
+//             <a
+//               href="/properties"
+//               className="mt-7 inline-flex rounded-md bg-[#b4956a] px-4 py-2 text-[12px] font-semibold text-black shadow-sm hover:opacity-90"
+//             >
+//               View All Properties
+//             </a>
+//           </div>
+
+//           {/* RIGHT: collage */}
+//           <div className="md:col-span-8">
+//             <div className="grid gap-10 md:grid-cols-2">
+//               {/* Left: Tall feature */}
+//               <figure>
+//                 <Card image={i1} h="h-[420px] md:h-[460px]" alt="Kardhani Prime At 9 — Dukan, Jaipur" />
+//                 <CaptionRow
+//                   leftTitle="Kardhani Prime At 9"
+//                   leftSub="Dukan, Jaipur"
+//                   rightTitle="Grand Polo Club & Resort"
+//                 />
+//               </figure>
+
+//               {/* Right column: two stacked small cards */}
+//               <div className="grid gap-10">
+//                 <figure>
+//                   <Card image={i2} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
+//                   <CaptionRow
+//                     leftTitle="SIDDHI HOMES REALTY"
+//                     leftSub="Dukan, Jaipur"
+//                     rightTitle="Valenza"
+//                   />
+//                 </figure>
+
+//                 <figure>
+//                   <Card image={i3} h="h-[180px] md:h-[190px]" alt="Kardhani Prime At 9 — Dukan, Jaipur" />
+//                   <CaptionRow
+//                     leftTitle="SHREE SHYAM ENTERPRISES"
+//                     leftSub="THE CITY PARK"
+//                     rightTitle="PARK VIEW by SIDDHI HOMES"
+//                   />
+//                 </figure>
+//               </div>
+
+//               {/* Bottom: wide across both */}
+//               <figure className="md:col-span-2">
+//                 <Card image={i4} h="h-[220px] md:h-[240px]" alt="Grand Polo Club & Resort" />
+//                 <CaptionRow
+//                   leftTitle="ARD BUILDHOME PRIVATE LIMITED"
+//                   leftSub="VANTARA"
+//                   rightTitle="THE EMERALD-II"
+//                   rightAlign
+//                 />
+//               </figure>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+// new 
 export function PremiumProperties() {
+  const openPdf = (path: string) => {
+    window.open(path, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <section className="py-16 md:py-20 text-neutral-900">{/* <- force dark text here */}
+    <section className="py-16 md:py-20 text-neutral-900">
       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
         <div className="grid gap-10 md:grid-cols-12">
           {/* LEFT: copy */}
@@ -184,8 +271,12 @@ export function PremiumProperties() {
           <div className="md:col-span-8">
             <div className="grid gap-10 md:grid-cols-2">
               {/* Left: Tall feature */}
-              <figure>
-                <Card image={i1} h="h-[420px] md:h-[460px]" alt="Kardhani Prime At 9 — Dukan, Jaipur" />
+              <figure onClick={() => openPdf("/assets/pdf/emreld.pdf")} className="cursor-pointer">
+                <Card
+                  image={i1}
+                  h="h-[420px] md:h-[460px]"
+                  alt="Kardhani Prime At 9 — Dukan, Jaipur"
+                />
                 <CaptionRow
                   leftTitle="Kardhani Prime At 9"
                   leftSub="Dukan, Jaipur"
@@ -195,7 +286,10 @@ export function PremiumProperties() {
 
               {/* Right column: two stacked small cards */}
               <div className="grid gap-10">
-                <figure>
+                <figure
+                  onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
+                  className="cursor-pointer"
+                >
                   <Card image={i2} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
                   <CaptionRow
                     leftTitle="SIDDHI HOMES REALTY"
@@ -204,8 +298,15 @@ export function PremiumProperties() {
                   />
                 </figure>
 
-                <figure>
-                  <Card image={i3} h="h-[180px] md:h-[190px]" alt="Kardhani Prime At 9 — Dukan, Jaipur" />
+                <figure
+                  onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
+                  className="cursor-pointer"
+                >
+                  <Card
+                    image={i3}
+                    h="h-[180px] md:h-[190px]"
+                    alt="Kardhani Prime At 9 — Dukan, Jaipur"
+                  />
                   <CaptionRow
                     leftTitle="SHREE SHYAM ENTERPRISES"
                     leftSub="THE CITY PARK"
@@ -215,7 +316,10 @@ export function PremiumProperties() {
               </div>
 
               {/* Bottom: wide across both */}
-              <figure className="md:col-span-2">
+              <figure
+                onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
+                className="md:col-span-2 cursor-pointer"
+              >
                 <Card image={i4} h="h-[220px] md:h-[240px]" alt="Grand Polo Club & Resort" />
                 <CaptionRow
                   leftTitle="ARD BUILDHOME PRIVATE LIMITED"
