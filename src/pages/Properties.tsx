@@ -2,7 +2,7 @@
 import React, { useEffect, useState, type JSX } from "react";
 import axios from "axios";
 import bg from "../assets/property/bg.svg";
-import { Search } from "lucide-react";
+import { Calendar, Search } from "lucide-react";
 
 const WHATSAPP_NUMBER = "8860643975";
 const tabs = ["Buy", "Sell", "New Projects", "Plot", "Commercial"] as const;
@@ -306,31 +306,27 @@ export default function Properties(): JSX.Element {
           </div>
         )}
 
-        <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
+         <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h3 className="font-serif text-xl md:text-2xl">
-                Instant <span className="text-[#b4956a]">Video Call</span> and{" "}
+                Schedule a <span className="text-[#b4956a]">Meeting</span> and{" "}
                 <span className="text-[#b4956a]">WhatsApp Chat</span>
               </h3>
               <p className="mt-2 text-sm text-neutral-700">
-                Create team, join contests & win exciting cash prizes.
+                Book a time that works for you and we'll get in touch to discuss your project.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
               <a
-                href="https://meet.google.com/"
+                href="https://calendly.com/bishtyash069/30min"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-black hover:opacity-90"
               >
-                <img
-                  alt=""
-                  src="https://www.gstatic.com/images/branding/product/1x/meet_2020q4_48dp.png"
-                  className="h-4 w-4"
-                />
-                Google Meet
+                <Calendar className="h-4 w-4 text-black" />
+                Schedule a Meeting
               </a>
 
               <a
