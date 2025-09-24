@@ -1,15 +1,11 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
+
 import {
   User,
   Mail,
   Phone,
   MessageSquareText,
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Send,
+  
   Calendar,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -21,10 +17,7 @@ const Contact = () => {
   const [agreePrivacy, setAgreePrivacy] = useState(false);
 
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    // hook to backend later
-  };
+  
 
   return (
     <>

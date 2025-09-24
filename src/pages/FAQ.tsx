@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
+
 import {
   ChevronDown,
   ChevronUp,
@@ -7,11 +7,7 @@ import {
   Mail,
   Phone,
   MessageSquareText,
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Send,
+  
   Calendar,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -50,10 +46,7 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    // hook to backend later
-  };
+  
 
   return (
     <>
@@ -316,17 +309,7 @@ function Field({
   return <div className={multiline ? "field multiline" : "field"}>{children}</div>;
 }
 
-function Social({ icon: Comp, aria }: { icon: LucideIcon; aria: string }) {
-  return (
-    <button
-      type="button"
-      aria-label={aria}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-white ring-1 ring-[#b4956a]/50 text-[#b4956a] hover:bg-[#b4956a]/10"
-    >
-      <Comp size={16} strokeWidth={1.75} />
-    </button>
-  );
-}
+
 
 function Icon({ as: Comp }: { as: LucideIcon }) {
   return <Comp size={16} className="text-neutral-500 shrink-0" />;
