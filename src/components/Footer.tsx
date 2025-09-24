@@ -12,32 +12,59 @@ const Footer: FC = () => {
     { label: "Contact Us", href: "/contact" },
   ];
 
-  const residential = [
-    "The Alba Residences, Dorchester Collection, Dubai",
-    "The Alba Residences, Dorchester Collection, Dubai",
-    "The Alba Residences, Dorchester Collection, Dubai",
-    "The Alba Residences, Dorchester Collection, Dubai",
+  // Merged Projects array (residential + commercial)
+  // Short highlights pulled from your uploaded PDFs.
+  const projects = [
+    {
+      title: "Vantara",
+      short:
+        "48 super-luxury apartments — unit mix: 31 x 4BHK, 12 x 3BHK, 5 penthouses. Land ~3,000 sq.yds; waterfall & dual-layer clubhouse; world-class amenities and provisions (solar, 100% common backup, centralized gas bank).",
+      note: "RERA: RAJ/P/2024/3101",
+      // source: Vantara PDF. :contentReference[oaicite:0]{index=0}
+    },
+    {
+      title: "The Emerald",
+      short:
+        "Luxury 3BHK & 4BHK apartments with pool, AC gym, rooftop garden, kids' play area, gas-bank, CCTV & 24hr power backup; prime Mansarovar location (near Mansarovar Metro).",
+      note: "Site: Ashok Vatika, Gopalpura Bypass — RERA: RAJ/P/2023/2598",
+      // source: emreld.pdf. :contentReference[oaicite:1]{index=1}
+    },
+    {
+      title: "The Landmark",
+      short:
+        "2 / 3 BHK luxury apartments; typical BU/SBU areas listed in brochure — planned with solar panels for common area and practical floor layouts.",
+      note: "Address: C3/C4/C5 Krashi Vihar, Near Mansarovar Metro — RERA: RAJ/P/2023/2649",
+      // source: siddhi-homes.pdf. :contentReference[oaicite:2]{index=2}
+    },
+    {
+      title: "Valenza (presentation)",
+      short:
+        "Project presentation available (Valenza PPT — April 2025). Refer to PDF for full design & delivery details.",
+      note: "See Valenza PPT (uploaded).",
+      // source: Valenza-PPT.pdf. :contentReference[oaicite:3]{index=3}
+    },
   ];
 
-  const commercial = [
-    "The Alba Residences, Dorchester Collection, Dubai",
-    "The Alba Residences, Dorchester Collection, Dubai",
-    "The Alba Residences, Dorchester Collection, Dubai",
-    "The Alba Residences, Dorchester Collection, Dubai",
-  ];
-
-    const socials: { icon: LucideIcon; label: string; href: string }[] = [
-    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61579187717172" },
+  const socials: { icon: LucideIcon; label: string; href: string }[] = [
+    {
+      icon: Facebook,
+      label: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61579187717172",
+    },
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/dukiya_infra/" },
     { icon: Twitter, label: "Twitter/X", href: "#" }, // 🔹 replace later if you have one
-    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/dukiya-infra-private-limited/" },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/dukiya-infra-private-limited/",
+    },
     { icon: Send, label: "Telegram", href: "#" }, // 🔹 replace later if you have one
   ];
 
-
   return (
     <footer
-      className="relative text-white bg-cover bg-center"
+      id="site-footer"
+      className="relative z-0 text-white bg-cover bg-center"
       style={{ backgroundImage: `url(${footerBg})` }}
     >
       {/* dark overlay */}
@@ -62,27 +89,21 @@ const Footer: FC = () => {
             </ul>
           </div>
 
-          {/* Residential */}
-          <div>
-            <h4 className="font-serif text-2xl text-[#c2a579]">Residential</h4>
-            <ul className="mt-4 space-y-4 text-[13px] leading-5 text-white/85">
-              {residential.map((t, idx) => (
-                <li key={idx} className="max-w-[34ch]">{t}</li>
-              ))}
-            </ul>
-          </div>
+          {/* Projects (merged Residential + Commercial) */}
+<div>
+  <h4 className="font-serif text-2xl text-[#c2a579]">Projects</h4>
+  <ul className="mt-4 grid gap-6 sm:grid-cols-2 text-[13px] leading-6 text-white/85">
+    {projects.map((p) => (
+      <li key={p.title} className="max-w-[40ch]">
+        <div className="font-medium">{p.title}</div>
+        <div className="mt-1 text-[13px] text-white/80">{p.short}</div>
+        <div className="mt-1 text-[12px] text-white/60">{p.note}</div>
+      </li>
+    ))}
+  </ul>
+</div>
 
-          {/* Commercial */}
-          <div>
-            <h4 className="font-serif text-2xl text-[#c2a579]">Commercial</h4>
-            <ul className="mt-4 space-y-4 text-[13px] leading-5 text-white/85">
-              {commercial.map((t, idx) => (
-                <li key={idx} className="max-w-[34ch]">{t}</li>
-              ))}
-            </ul>
-          </div>
 
-          {/* Follow Us */}
           {/* Follow Us */}
           <div>
             <h4 className="font-serif text-2xl text-[#c2a579]">Follow Us on</h4>
@@ -100,6 +121,7 @@ const Footer: FC = () => {
             </div>
           </div>
 
+          {/* empty/gap column kept for layout symmetry; can be used later */}
         </div>
 
         {/* Divider */}

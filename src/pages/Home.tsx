@@ -6,8 +6,8 @@ import i1 from "@/assets/home/img3.png"; // feature (tall)
 import i2 from "@/assets/home/img4.png"; // small
 import i3 from "@/assets/home/img5.png"; // small
 import i4 from "@/assets/home/img6.png"; // wide
-import { useEffect} from "react";
-import {  X,} from "lucide-react";
+import { useEffect } from "react";
+import { X, } from "lucide-react";
 import { Calendar, BookOpen, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
@@ -25,6 +25,7 @@ import {
   User,
   MessageSquareText,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <main className="flex flex-col">
@@ -66,9 +67,7 @@ function Hero() {
           and building it into reality.
         </p>
         <div className="mt-6">
-          <button className="rounded-md border border-[#b4956a] px-6 py-2 text-sm font-medium text-[#b4956a] hover:bg-[#b4956a] hover:text-black transition">
-            Learn More
-          </button>
+
         </div>
       </div>
 
@@ -121,9 +120,13 @@ function VisionSection() {
           COMMERCIAL REAL ESTATE
         </h2>
         <div className="mt-5">
-          <button className="rounded-md bg-[#b4956a] px-6 py-2 text-sm font-medium text-black hover:opacity-90">
+          <Link
+            to="/contact"
+
+            className="hidden md:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-md hover:opacity-90 whitespace-nowrap"
+          >
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </section>
@@ -259,49 +262,57 @@ export function PremiumProperties() {
               into reality.
             </p>
 
-            <a
-              href="/properties"
+            <Link
+              to="/properties"
               className="mt-7 inline-flex rounded-md bg-[#b4956a] px-4 py-2 text-[12px] font-semibold text-black shadow-sm hover:opacity-90"
             >
               View All Properties
-            </a>
+            </Link>
           </div>
 
           {/* RIGHT: collage */}
           <div className="md:col-span-8">
             <div className="grid gap-10 md:grid-cols-2">
               {/* Left: Tall feature */}
-              <figure onClick={() => openPdf("/assets/pdf/emreld.pdf")} className="cursor-pointer">
+              <figure className="relative">
                 <Card
                   image={i1}
                   h="h-[420px] md:h-[460px]"
                   alt="Kardhani Prime At 9 — Dukan, Jaipur"
                 />
                 <CaptionRow
-                  leftTitle="Kardhani Prime At 9"
-                  leftSub="Dukan, Jaipur"
+                  leftTitle="Emerald"
+                  leftSub="PRIME LOCATION Nirman Nagar"
                   rightTitle="Grand Polo Club & Resort"
                 />
+                {/* Broucher button for Emerald */}
+                <button
+                  onClick={() => openPdf("/assets/pdf/emreld.pdf")}
+                  className="absolute bottom-24 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
+                >
+                  Broucher
+                </button>
               </figure>
 
               {/* Right column: two stacked small cards */}
               <div className="grid gap-10">
-                <figure
-                  onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
-                  className="cursor-pointer"
-                >
+                <figure className="relative">
                   <Card image={i2} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
                   <CaptionRow
                     leftTitle="SIDDHI HOMES REALTY"
                     leftSub="Dukan, Jaipur"
                     rightTitle="Valenza"
                   />
+                  {/* Broucher button for Siddhi Homes */}
+                  <button
+                    onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
+                    className="absolute bottom-16 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
+                  >
+                    Broucher
+                  </button>
                 </figure>
 
-                <figure
-                  onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
-                  className="cursor-pointer"
-                >
+                <figure className="relative">
                   <Card
                     image={i3}
                     h="h-[180px] md:h-[190px]"
@@ -312,14 +323,18 @@ export function PremiumProperties() {
                     leftSub="THE CITY PARK"
                     rightTitle="PARK VIEW by SIDDHI HOMES"
                   />
+                  {/* Broucher button for Shree Shyam Enterprises */}
+                  <button
+                    onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
+                    className="absolute bottom-16 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
+                  >
+                    Broucher
+                  </button>
                 </figure>
               </div>
 
               {/* Bottom: wide across both */}
-              <figure
-                onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
-                className="md:col-span-2 cursor-pointer"
-              >
+              <figure className="md:col-span-2 relative">
                 <Card image={i4} h="h-[220px] md:h-[240px]" alt="Grand Polo Club & Resort" />
                 <CaptionRow
                   leftTitle="ARD BUILDHOME PRIVATE LIMITED"
@@ -327,6 +342,13 @@ export function PremiumProperties() {
                   rightTitle="THE EMERALD-II"
                   rightAlign
                 />
+                {/* Broucher button for Ard Buildhome */}
+                <button
+                  onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
+                  className="absolute bottom-16 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
+                >
+                  Broucher
+                </button>
               </figure>
             </div>
           </div>
@@ -538,6 +560,10 @@ type Blog = {
   publishedAt: string;
   slug: string;
 };
+// ...other imports (Blog type etc.)
+
+type ImgMode = "cover" | "contain";
+
 function RecentBlogs() {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -545,6 +571,12 @@ function RecentBlogs() {
   const [showAllModal, setShowAllModal] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // New: whether footer is visible (in viewport)
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  // Per-image display mode map (blogId -> "cover" | "contain")
+  const [imgModes, setImgModes] = useState<Record<string, ImgMode>>({});
 
   // fetch blogs
   useEffect(() => {
@@ -596,6 +628,42 @@ function RecentBlogs() {
     return () => window.removeEventListener("keydown", onKey);
   }, [selectedBlog, showAllModal]);
 
+  // observe footer visibility to hide the "View All Blogs" button when footer is in view
+  useEffect(() => {
+    const footerEl = document.getElementById("site-footer");
+    if (!footerEl) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setFooterVisible(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    obs.observe(footerEl);
+    return () => obs.disconnect();
+  }, []);
+
+  const onImageLoad = (blogId: string, ev: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = ev.currentTarget;
+    if (!img || !img.naturalWidth || !img.naturalHeight) return;
+
+    const ratio = img.naturalWidth / img.naturalHeight; // >1 => wide, <1 => tall
+    // pick threshold (1.2) to treat slightly wide images as wide
+    const mode: ImgMode = ratio > 1.2 ? "cover" : "contain";
+
+    setImgModes((prev) => {
+      if (prev[blogId] === mode) return prev;
+      return { ...prev, [blogId]: mode };
+    });
+  };
+
   const scrollByViewport = (dir: "prev" | "next") => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -619,45 +687,62 @@ function RecentBlogs() {
     }
   };
 
-  const BlogCard = ({ b, fromAll = false }: { b: Blog; fromAll?: boolean }) => (
-    <article
-      className="scroll-ml-4 scroll-snap-align-start rounded-2xl bg-white text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.25)] ring-1 ring-white/10 md:scroll-ml-0"
-      style={{ scrollSnapAlign: "start" }}
-    >
-      <div className="p-3 md:p-4">
-        <div className="overflow-hidden rounded-xl bg-neutral-100 flex items-center justify-center">
-          <img
-            src={b.images?.[0]?.url ?? "/placeholder.png"}
-            alt={b.title}
-            className="h-40 w-full object-contain md:h-44"
-          />
-        </div>
-
-        <h3 className="mt-3 text-[15px] font-semibold leading-snug">{b.title}</h3>
-
-        <p className="mt-2 text-[13px] leading-6 text-neutral-600 line-clamp-3">
-          {b.excerpt}
-        </p>
-
-        <div className="mt-4 flex items-center justify-between text-[12px] text-neutral-500">
-          <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1">
-              <BookOpen size={14} /> 3 min read
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Calendar size={14} /> {formatDate(b.publishedAt)}
-            </span>
+  // BlogCard uses imgModes[blogId] to decide classes
+  const BlogCard = ({ b, fromAll = false }: { b: Blog; fromAll?: boolean }) => {
+    const mode = imgModes[b._id] ?? "contain"; // default to contain until load
+    return (
+      <article
+        className="scroll-ml-4 scroll-snap-align-start rounded-2xl bg-white text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.25)] ring-1 ring-white/10 md:scroll-ml-0"
+        style={{ scrollSnapAlign: "start" }}
+      >
+        <div className="p-3 md:p-4">
+          {/* Image container with fixed height so cards align */}
+          <div className="overflow-hidden rounded-xl bg-neutral-100 flex items-center justify-center h-40 md:h-44">
+            {mode === "cover" ? (
+              // wide images: fill card, allow small crop
+              <img
+                src={b.images?.[0]?.url ?? "/placeholder.png"}
+                alt={b.title}
+                className="h-full w-full object-cover"
+                onLoad={(e) => onImageLoad(b._id, e)}
+              />
+            ) : (
+              // portrait / square: contain fully, no crop
+              <img
+                src={b.images?.[0]?.url ?? "/placeholder.png"}
+                alt={b.title}
+                className="max-h-full w-auto object-contain"
+                onLoad={(e) => onImageLoad(b._id, e)}
+              />
+            )}
           </div>
-          <button
-            onClick={() => handleOpenBlog(b, fromAll)}
-            className="inline-flex items-center gap-1 font-medium text-[#b4956a] hover:opacity-90"
-          >
-            View More <ArrowRight size={14} />
-          </button>
+
+          <h3 className="mt-3 text-[15px] font-semibold leading-snug">{b.title}</h3>
+
+          <p className="mt-2 text-[13px] leading-6 text-neutral-600 line-clamp-3">
+            {b.excerpt}
+          </p>
+
+          <div className="mt-4 flex items-center justify-between text-[12px] text-neutral-500">
+            <div className="flex items-center gap-4">
+              <span className="inline-flex items-center gap-1">
+                <BookOpen size={14} /> 3 min read
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Calendar size={14} /> {formatDate(b.publishedAt)}
+              </span>
+            </div>
+            <button
+              onClick={() => handleOpenBlog(b, fromAll)}
+              className="inline-flex items-center gap-1 font-medium text-[#b4956a] hover:opacity-90"
+            >
+              View More <ArrowRight size={14} />
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
-  );
+      </article>
+    );
+  };
 
   if (loading) {
     return (
@@ -682,8 +767,8 @@ function RecentBlogs() {
           <h2 className="font-serif text-3xl md:text-5xl font-semibold">Recent Blogs</h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm md:text-[15px] text-neutral-600">
             A vision that transcends property and space, where unmatched craftsmanship inspires
-            elegance, and innovation to enrich lives. Imagining the extraordinary and building it into
-            reality.
+            elegance, and innovation to enrich lives. Imagining the extraordinary and building it
+            into reality.
           </p>
         </div>
 
@@ -730,7 +815,10 @@ function RecentBlogs() {
           <div className="mt-8 hidden justify-center md:flex">
             <button
               onClick={() => setShowAllModal(true)}
-              className="inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90"
+              className={`inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90 transition-all ${
+                footerVisible ? "opacity-0 pointer-events-none translate-y-2" : "opacity-100"
+              }`}
+              aria-hidden={footerVisible}
             >
               View All Blogs
             </button>
@@ -740,12 +828,10 @@ function RecentBlogs() {
 
       {/* All Blogs Modal */}
       {showAllModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-          <div
-            className="absolute inset-0 bg-black/70"
-            onClick={() => setShowAllModal(false)}
-          />
-          <div className="relative z-10 w-full max-w-6xl rounded-xl bg-white p-6 shadow-lg overflow-y-auto max-h-[90vh]">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/70" onClick={() => setShowAllModal(false)} />
+          <div className="relative z-10 w-full max-w-6xl rounded-xl bg-white p-6 shadow-lg overflow-y-auto max-h-[80vh]">
             <button
               onClick={() => setShowAllModal(false)}
               className="absolute top-3 right-3 rounded-full bg-black/60 p-1 text-white hover:bg-black"
@@ -767,12 +853,9 @@ function RecentBlogs() {
 
       {/* Blog Detail Modal */}
       {selectedBlog && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center px-4">
-          <div
-            className="absolute inset-0 bg-black/70"
-            onClick={() => setSelectedBlog(null)}
-          />
-          <div className="relative z-20 w-full max-w-3xl rounded-xl bg-white p-6 shadow-lg overflow-y-auto max-h-[90vh]">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
+          <div className="absolute inset-0 bg-black/70" onClick={() => setSelectedBlog(null)} />
+          <div className="relative z-10 w-full max-w-3xl rounded-xl bg-white p-6 shadow-lg overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setSelectedBlog(null)}
               className="absolute top-3 right-3 rounded-full bg-black/60 p-1 text-white hover:bg-black"
@@ -780,15 +863,29 @@ function RecentBlogs() {
             >
               <X size={18} />
             </button>
+
             <div className="space-y-4">
-              <div className="overflow-hidden rounded-xl bg-neutral-100 flex items-center justify-center">
-                <img
-                  src={selectedBlog.images?.[0]?.url ?? "/placeholder.png"}
-                  alt={selectedBlog.title}
-                  className="w-full h-56 object-contain rounded-md"
-                />
+              <div className="overflow-hidden rounded-xl bg-neutral-100 flex items-center justify-center h-56">
+                {/* Modal image uses previously-determined mode (if available) */}
+                {selectedBlog && (imgModes[selectedBlog._id] === "cover") ? (
+                  <img
+                    src={selectedBlog.images?.[0]?.url ?? "/placeholder.png"}
+                    alt={selectedBlog.title}
+                    className="h-full w-full object-cover rounded-md"
+                    onLoad={(e) => onImageLoad(selectedBlog._id, e)}
+                  />
+                ) : (
+                  <img
+                    src={selectedBlog.images?.[0]?.url ?? "/placeholder.png"}
+                    alt={selectedBlog.title}
+                    className="max-h-full w-auto object-contain rounded-md"
+                    onLoad={(e) => onImageLoad(selectedBlog._id, e)}
+                  />
+                )}
               </div>
+
               <h2 className="text-2xl font-semibold">{selectedBlog.title}</h2>
+
               <div className="flex items-center gap-4 text-sm text-neutral-500">
                 <span className="inline-flex items-center gap-1">
                   <BookOpen size={14} /> 3 min read
@@ -797,17 +894,8 @@ function RecentBlogs() {
                   <Calendar size={14} /> {formatDate(selectedBlog.publishedAt)}
                 </span>
               </div>
-              <p className="text-neutral-700 whitespace-pre-line">
-                {selectedBlog.excerpt}
-              </p>
-              <div className="flex justify-end">
-                {/* <a
-                  href={`/blogs/${selectedBlog.slug}`}
-                  className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-semibold text-black hover:opacity-90"
-                >
-                  Open Full Post <ArrowRight size={14} />
-                </a> */}
-              </div>
+
+              <p className="text-neutral-700 whitespace-pre-line">{selectedBlog.excerpt}</p>
             </div>
           </div>
         </div>
@@ -817,17 +905,24 @@ function RecentBlogs() {
 }
 
 
+
+
+
+
+
+
+
 // Form
+
+
 
 
 function ExpressInterest() {
   const [agreeNews, setAgreeNews] = useState(true);
   const [agreePrivacy, setAgreePrivacy] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    // TODO: hook to backend
-  };
+  // Note: The onSubmit function is no longer needed as the form submits directly to Formspree.
+  // The browser handles the submission when action and method attributes are present.
 
   return (
     <section className="py-16 md:py-20 text-neutral-900">
@@ -837,8 +932,12 @@ function ExpressInterest() {
           Express your interest
         </h2>
 
-        {/* Form card (no shadow per mock; just borders) */}
-        <form onSubmit={onSubmit} className="mt-8 space-y-4">
+        {/* Form card with Formspree integration */}
+        <form
+          className="mt-8 space-y-4"
+          action="https://formspree.io/f/mdkwobjo"
+          method="POST"
+        >
           {/* Top row: name / email / phone */}
           <div className="grid gap-4 md:grid-cols-3">
             <Field>
@@ -894,6 +993,7 @@ function ExpressInterest() {
                   className="h-4 w-4 accent-[#b4956a]"
                   checked={agreeNews}
                   onChange={(e) => setAgreeNews(e.target.checked)}
+                  name="agreeNews"
                 />
                 I would like to receive communications from DUKIYA.
               </label>
@@ -905,18 +1005,11 @@ function ExpressInterest() {
                   checked={agreePrivacy}
                   onChange={(e) => setAgreePrivacy(e.target.checked)}
                   required
+                  name="agreePrivacy"
                 />
                 I have read and agree to the{" "}
-                <a href="/privacy" className="underline">Privacy Policy</a>.
+                <a href="/" className="underline">Privacy Policy</a>.
               </label>
-            </div>
-
-            <div className="flex justify-start gap-3 md:justify-end">
-              <Social icon={Facebook} aria="Facebook" />
-              <Social icon={Instagram} aria="Instagram" />
-              <Social icon={Twitter} aria="Twitter" />
-              <Social icon={Linkedin} aria="LinkedIn" />
-              <Social icon={Send} aria="Share" />
             </div>
           </div>
 
@@ -936,27 +1029,23 @@ function ExpressInterest() {
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h3 className="font-serif text-xl md:text-2xl">
-                Instant <span className="text-[#b4956a]">Video Call</span> and{" "}
+                Schedule a <span className="text-[#b4956a]">Meeting</span> and{" "}
                 <span className="text-[#b4956a]">WhatsApp Chat</span>
               </h3>
               <p className="mt-2 text-sm text-neutral-700">
-                Create team, join contests & win exciting cash prizes.
+                Book a time that works for you and we'll get in touch to discuss your project.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
               <a
-                href="https://meet.google.com/"
+                href="https://calendly.com/bishtyash069/30min"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-black hover:opacity-90"
               >
-                <img
-                  alt=""
-                  src="https://www.gstatic.com/images/branding/product/1x/meet_2020q4_48dp.png"
-                  className="h-4 w-4"
-                />
-                Google Meet
+                <Calendar className="h-4 w-4 text-black" />
+                Schedule a Meeting
               </a>
 
               <a
@@ -993,6 +1082,8 @@ function ExpressInterest() {
     </section>
   );
 }
+
+
 
 /* -------------------- tiny UI helpers -------------------- */
 
