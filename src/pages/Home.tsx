@@ -373,35 +373,6 @@ function Card({ image, h, alt }: { image: string; h: string; alt: string }) {
 }
 
 /** Caption row: left (title+sub) | thin divider | right (title) */
-function CaptionRow({
-  leftTitle,
-  leftSub,
-  rightTitle,
-  rightAlign = false,
-}: {
-  leftTitle: string;
-  leftSub?: string;
-  rightTitle: string;
-  rightAlign?: boolean;
-}) {
-  return (
-    <figcaption className="mt-2 grid grid-cols-[1fr_auto_1fr] items-start gap-3 text-[12px]">
-      {/* left text */}
-      <div>
-        <div className="font-semibold leading-tight text-neutral-900">{leftTitle}</div>
-        {leftSub ? <div className="text-neutral-600">{leftSub}</div> : null}
-      </div>
-
-      {/* divider */}
-      <div className="mt-0.5 h-5 w-px justify-self-center bg-neutral-300" />
-
-      {/* right text */}
-      <div className={rightAlign ? "text-right text-neutral-800" : "text-neutral-800"}>
-        <div className="leading-tight">{rightTitle}</div>
-      </div>
-    </figcaption>
-  );
-}
 
 
 
