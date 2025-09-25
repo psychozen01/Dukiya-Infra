@@ -65,49 +65,7 @@ const FAQ = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="relative -mt-8 max-w-[900px] mx-auto px-4">
-          <div className="flex items-center bg-[#1a1a1a] rounded-xl shadow-lg p-2">
-            {/* Input + Search button grouped */}
-            <div className="flex flex-1 rounded-md overflow-hidden">
-              <input
-                type="text"
-                placeholder="Ask Question..."
-                className="flex-1 px-4 py-2 text-sm text-neutral-700 placeholder-neutral-500 outline-none bg-white"
-              />
-              <button className="bg-[#b4956a] px-4 flex items-center justify-center hover:bg-[#9c7a4f] transition">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-4.35-4.35M9.5 17a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            {/* WhatsApp Button */}
-            <a
-              href="https://wa.me/"
-              target="_blank"
-              rel="noreferrer"
-              className="ml-2 inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-white hover:opacity-90"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                alt="WhatsApp"
-                className="w-4 h-4"
-              />
-              WhatsApp Chat
-            </a>
-          </div>
-        </div>
+        
 
         {/* FAQ Accordion */}
         <div className="max-w-[900px] mx-auto mt-12 px-4 space-y-4">

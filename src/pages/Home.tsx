@@ -236,6 +236,10 @@ export function PremiumProperties() {
     window.open(path, "_blank", "noopener,noreferrer");
   };
 
+  // Assuming i1, i2, i3, i4, Card, Link are imported elsewhere
+  // import { i1, i2, i3, i4, Card } from "./imports";
+  // import { Link } from "react-router-dom";
+
   return (
     <section className="py-16 md:py-20 text-neutral-900">
       <div className="mx-auto max-w-[1200px] px-4 md:px-6">
@@ -271,41 +275,44 @@ export function PremiumProperties() {
             <div className="grid gap-10 md:grid-cols-2">
               {/* Left: Tall feature */}
               <figure className="relative">
+                {/* NOTE: You'll need to make sure 'Card' still works without 'h' prop if you modify it */}
                 <Card
                   image={i1}
                   h="h-[420px] md:h-[460px]"
                   alt="Kardhani Prime At 9 — Dukan, Jaipur"
                 />
-                <CaptionRow
-                  leftTitle="Emerald"
-                  leftSub="PRIME LOCATION Nirman Nagar"
-                  rightTitle="Grand Polo Club & Resort"
-                />
-                {/* Broucher button for Emerald */}
-                <button
-                  onClick={() => openPdf("/assets/pdf/emreld.pdf")}
-                  className="absolute bottom-24 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
-                >
-                  Broucher
-                </button>
+                
+                {/* MODIFIED CAPTION AND BUTTON */}
+                <div className="mt-2 flex justify-between items-center px-2">
+                  <p className="text-sm font-semibold">Emerald</p>
+                  <button
+                    onClick={() => openPdf("/assets/pdf/emreld.pdf")}
+                    className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
+                  >
+                    Broucher
+                  </button>
+                </div>
+                {/* END MODIFIED CAPTION AND BUTTON */}
+
               </figure>
 
               {/* Right column: two stacked small cards */}
               <div className="grid gap-10">
                 <figure className="relative">
                   <Card image={i2} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
-                  <CaptionRow
-                    leftTitle="SIDDHI HOMES REALTY"
-                    leftSub="Dukan, Jaipur"
-                    rightTitle="Valenza"
-                  />
-                  {/* Broucher button for Siddhi Homes */}
-                  <button
-                    onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
-                    className="absolute bottom-16 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
-                  >
-                    Broucher
-                  </button>
+
+                  {/* MODIFIED CAPTION AND BUTTON */}
+                  <div className="mt-2 flex justify-between items-center px-2">
+                    <p className="text-sm font-semibold">SIDDHI HOMES REALTY</p>
+                    <button
+                      onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
+                      className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
+                    >
+                      Broucher
+                    </button>
+                  </div>
+                  {/* END MODIFIED CAPTION AND BUTTON */}
+
                 </figure>
 
                 <figure className="relative">
@@ -314,37 +321,38 @@ export function PremiumProperties() {
                     h="h-[180px] md:h-[190px]"
                     alt="Kardhani Prime At 9 — Dukan, Jaipur"
                   />
-                  <CaptionRow
-                    leftTitle="SHREE SHYAM ENTERPRISES"
-                    leftSub="THE CITY PARK"
-                    rightTitle="PARK VIEW by SIDDHI HOMES"
-                  />
-                  {/* Broucher button for Shree Shyam Enterprises */}
-                  <button
-                    onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
-                    className="absolute bottom-16 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
-                  >
-                    Broucher
-                  </button>
+
+                  {/* MODIFIED CAPTION AND BUTTON */}
+                  <div className="mt-2 flex justify-between items-center px-2">
+                    <p className="text-sm font-semibold">SHREE SHYAM ENTERPRISES</p>
+                    <button
+                      onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
+                      className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
+                    >
+                      Broucher
+                    </button>
+                  </div>
+                  {/* END MODIFIED CAPTION AND BUTTON */}
+
                 </figure>
               </div>
 
               {/* Bottom: wide across both */}
               <figure className="md:col-span-2 relative">
                 <Card image={i4} h="h-[220px] md:h-[240px]" alt="Grand Polo Club & Resort" />
-                <CaptionRow
-                  leftTitle="ARD BUILDHOME PRIVATE LIMITED"
-                  leftSub="VANTARA"
-                  rightTitle="THE EMERALD-II"
-                  rightAlign
-                />
-                {/* Broucher button for Ard Buildhome */}
-                <button
-                  onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
-                  className="absolute bottom-16 right-4 bg-[#b4956a]/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-3 rounded-full"
-                >
-                  Broucher
-                </button>
+                
+                {/* MODIFIED CAPTION AND BUTTON */}
+                <div className="mt-2 flex justify-between items-center px-2">
+                  <p className="text-sm font-semibold">ARD BUILDHOME PRIVATE LIMITED</p>
+                  <button
+                    onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
+                    className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
+                  >
+                    Broucher
+                  </button>
+                </div>
+                {/* END MODIFIED CAPTION AND BUTTON */}
+
               </figure>
             </div>
           </div>

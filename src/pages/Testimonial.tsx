@@ -1,4 +1,4 @@
-import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import user1 from "../assets/testimonial/user1.svg";
 import user2 from "../assets/testimonial/user2.svg";
 import user3 from "../assets/testimonial/user3.svg";
@@ -88,32 +88,37 @@ const TestimonialSection = () => {
       </section>
 
       {/* Instant Call & WhatsApp Section */}
-      <section className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8 max-w-[1200px] mx-auto shadow-lg">
+  <section className="py-16 md:py-20 text-neutral-900">
+      <div className="mx-auto max-w-[1100px] px-4 md:px-6">
+        {/* Heading */}
+        <h2 className="text-center font-serif text-3xl md:text-5xl font-semibold">
+          Express your interest
+        </h2>
+
+        {/* Form card with Formspree integration */}
+       
+        {/* Promo banner */}
+        <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h3 className="font-serif text-xl md:text-2xl">
-                Instant <span className="text-[#b4956a]">Video Call</span> and{" "}
+                Schedule a <span className="text-[#b4956a]">Meeting</span> and{" "}
                 <span className="text-[#b4956a]">WhatsApp Chat</span>
               </h3>
               <p className="mt-2 text-sm text-neutral-700">
-                Create team, join contests & win exciting cash prizes.
+                Book a time that works for you and we'll get in touch to discuss your project.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
               <a
-                href="https://meet.google.com/"
+                href="https://calendly.com/bishtyash069/30min"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-black hover:opacity-90"
               >
-                <img
-                  alt="Google Meet"
-                  src="https://www.gstatic.com/images/branding/product/1x/meet_2020q4_48dp.png"
-                  className="h-4 w-4"
-                />
-                Google Meet
+                <Calendar className="h-4 w-4 text-black" />
+                Schedule a Meeting
               </a>
 
               <a
@@ -123,7 +128,7 @@ const TestimonialSection = () => {
                 className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black ring-1 ring-black/10 hover:bg-white/90"
               >
                 <img
-                  alt="WhatsApp"
+                  alt=""
                   src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
                   className="h-4 w-4"
                 />
@@ -132,7 +137,22 @@ const TestimonialSection = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Local styles for fields to keep markup lean */}
+      <style>{`
+        .field {
+          display:flex; align-items:center; gap:.5rem;
+          border:1px solid rgba(0,0,0,.15); border-radius:.5rem;
+          padding:.5rem .75rem; background: white;
+        }
+        .field.multiline { align-items:flex-start; }
+        .field-input {
+          width:100%; background:transparent; outline:none;
+          font-size:.9rem; color:#0b0f15;
+        }
+      `}</style>
+    </section>
     </>
   );
 };

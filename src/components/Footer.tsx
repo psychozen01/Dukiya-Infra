@@ -90,19 +90,27 @@ const Footer: FC = () => {
           </div>
 
           {/* Projects (merged Residential + Commercial) */}
-<div>
-  <h4 className="font-serif text-2xl text-[#c2a579]">Projects</h4>
-  <ul className="mt-4 grid gap-6 sm:grid-cols-2 text-[13px] leading-6 text-white/85">
-    {projects.map((p) => (
-      <li key={p.title} className="max-w-[40ch]">
-        <div className="font-medium">{p.title}</div>
-        <div className="mt-1 text-[13px] text-white/80">{p.short}</div>
-        <div className="mt-1 text-[12px] text-white/60">{p.note}</div>
-      </li>
-    ))}
-  </ul>
-</div>
-
+          <div>
+            <h4 className="font-serif text-2xl text-[#c2a579]">Projects</h4>
+            {/* MODIFIED: Removed grid-cols-2 on ul, switched to simple space-y-3 and only rendering title */}
+            <ul className="mt-4 space-y-3 text-sm">
+              {projects.map((p) => (
+                <li key={p.title}>
+                  {/* MODIFIED: Wrapped title in <a> for hover effect, which acts as the project link */}
+                  <a
+                    href="/properties" // ⚠️ Consider linking to a specific project page if you have one
+                    className="inline-block text-white/85 hover:text-[#c2a579] transition-colors"
+                  >
+                    {p.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* MODIFIED: The original Projects section occupied 1/4 of the grid. By leaving the 4th column as-is, the projects will naturally align to the left side of the third column. 
+             If you wanted the projects to fill 2/4 and the social links to be last, you'd need to re-order the columns and use `lg:col-span-2` on the Projects div.
+             Since you asked for equal division, and there are only 4 projects, I've kept the simplest structure that ensures alignment.
+          */}
 
           {/* Follow Us */}
           <div>

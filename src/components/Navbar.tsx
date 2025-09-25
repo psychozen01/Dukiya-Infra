@@ -10,7 +10,7 @@ const links = [
   { label: "Properties", to: "/properties" },
   { label: "Testimonial", to: "/testimonial" },
   { label: "FAQ", to: "/faq" },
-  { label: "CSR", to: "/csr" },
+  // { label: "CSR", to: "/csr" },
 ];
 
 export default function Navbar() {
