@@ -1,7 +1,7 @@
 // src/pages/Home.tsx
 import heroImg from "@/assets/home/hero.svg";
-import img1 from "@/assets/home/img1.svg";     // skyscraper image
-import img2 from "@/assets/home/img2.svg";   // re-imagining horizon image
+// import img1 from "@/assets/home/img1.svg";     // skyscraper image
+// import img2 from "@/assets/home/img2.svg";   // re-imagining horizon image
 import i1 from "@/assets/home/img3.png"; // feature (tall)
 import i2 from "@/assets/home/img4.png"; // small
 import i3 from "@/assets/home/img5.png"; // small
