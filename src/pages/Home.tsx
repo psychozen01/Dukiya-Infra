@@ -22,6 +22,7 @@ import {
   MessageSquareText,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Chatbot from "../components/Chatbot";
 export default function Home() {
   return (
     <main className="flex flex-col">
@@ -40,6 +41,7 @@ export default function Home() {
       <ExpressInterest />
       {/* Recent Blogs */}
       <RecentBlogs />
+      <Chatbot />
     </main>
   );
 }
