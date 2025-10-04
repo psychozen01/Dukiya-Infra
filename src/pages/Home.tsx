@@ -30,10 +30,10 @@ export default function Home() {
       <Hero />
 
       {/* Vision section */}
-      <VisionSection />
+      {/* <VisionSection /> */}
 
       {/* Re-Imagining Horizon */}
-      <HorizonSection />
+      {/* <HorizonSection /> */}
 
       {/* Premium Properties */}
       <PremiumProperties />
@@ -103,52 +103,52 @@ function Hero() {
 }
 
 /* ---------------- Vision Section ---------------- */
-function VisionSection() {
-  return (
-    <section
-      className="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${img1})` }}
-    >
-      {/* dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/5" />
+// function VisionSection() {
+//   return (
+//     <section
+//       className="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center"
+//       style={{ backgroundImage: `url(${img1})` }}
+//     >
+//       {/* dark overlay for readability */}
+//       <div className="absolute inset-0 bg-black/5" />
 
-      <div className="relative z-10 text-center px-4 max-w-3xl">
-        <h2 className="text-xl md:text-2xl font-semibold text-white">
-          A VISION LIKE NO OTHER: LUMENA BY DUKIYA ILLUMINATES ULTRA-LUXURY
-          COMMERCIAL REAL ESTATE
-        </h2>
-        <div className="mt-5">
-          <Link
-            to="/contact"
+//       <div className="relative z-10 text-center px-4 max-w-3xl">
+//         <h2 className="text-xl md:text-2xl font-semibold text-white">
+//           A VISION LIKE NO OTHER: LUMENA BY DUKIYA ILLUMINATES ULTRA-LUXURY
+//           COMMERCIAL REAL ESTATE
+//         </h2>
+//         <div className="mt-5">
+//           <Link
+//             to="/contact"
 
-            className="hidden md:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-md hover:opacity-90 whitespace-nowrap"
-          >
-            Contact Us
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
+//             className="hidden md:inline-flex items-center justify-center rounded-md bg-[#b4956a] px-3 py-1.5 text-[12px] font-semibold text-black shadow-md hover:opacity-90 whitespace-nowrap"
+//           >
+//             Contact Us
+//           </Link>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 /* ---------------- Horizon Section ---------------- */
-function HorizonSection() {
-  return (
-    <section
-      className="relative min-h-[70vh] flex items-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${img2})` }}
-    >
-      {/* gradient overlay (left side only) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+// function HorizonSection() {
+//   return (
+//     <section
+//       className="relative min-h-[70vh] flex items-center bg-cover bg-center"
+//       style={{ backgroundImage: `url(${img2})` }}
+//     >
+//       {/* gradient overlay (left side only) */}
+//       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
 
-      <div className="relative z-10 px-6 md:px-16 max-w-3xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
-          RE IMAGINING HORIZON
-        </h2>
-      </div>
-    </section>
-  );
-}
+//       <div className="relative z-10 px-6 md:px-16 max-w-3xl">
+//         <h2 className="text-3xl md:text-4xl font-bold text-white">
+//           RE IMAGINING HORIZON
+//         </h2>
+//       </div>
+//     </section>
+//   );
+// }
 // premium section
 // export function PremiumProperties() {
 //   return (
