@@ -291,7 +291,7 @@ export function PremiumProperties() {
                     onClick={() => openPdf("/assets/pdf/emreld.pdf")}
                     className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
                   >
-                    Broucher
+                    Brochure
                   </button>
                 </div>
                 {/* END MODIFIED CAPTION AND BUTTON */}
@@ -310,7 +310,7 @@ export function PremiumProperties() {
                       onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
                       className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
                     >
-                      Broucher
+                      Brochure
                     </button>
                   </div>
                   {/* END MODIFIED CAPTION AND BUTTON */}
@@ -331,7 +331,7 @@ export function PremiumProperties() {
                       onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
                       className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
                     >
-                      Broucher
+                      Brochure
                     </button>
                   </div>
                   {/* END MODIFIED CAPTION AND BUTTON */}
@@ -350,7 +350,7 @@ export function PremiumProperties() {
                     onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
                     className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
                   >
-                    Broucher
+                    Brochure
                   </button>
                 </div>
                 {/* END MODIFIED CAPTION AND BUTTON */}
