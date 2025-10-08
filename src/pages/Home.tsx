@@ -4,7 +4,7 @@ import heroImg from "@/assets/home/hero.svg";
 // import img2 from "@/assets/home/img2.svg";   // re-imagining horizon image
 import i1 from "@/assets/home/img3.png"; // feature (tall)
 import i2 from "@/assets/home/img4.png"; // small
-import i3 from "@/assets/home/img5.png"; // small
+import i3 from "@/assets/home/i3.jpg"; // small
 import i4 from "@/assets/home/img6.png"; // wide
 import { useEffect } from "react";
 import { X, } from "lucide-react";
@@ -15,7 +15,7 @@ import { useState } from "react";
 // import the types
 import type { LucideIcon } from "lucide-react";
 import {
-  
+
   Phone,
   Mail,
   User,
@@ -283,7 +283,7 @@ export function PremiumProperties() {
                   h="h-[420px] md:h-[460px]"
                   alt="Kardhani Prime At 9 — Dukan, Jaipur"
                 />
-                
+
                 {/* MODIFIED CAPTION AND BUTTON */}
                 <div className="mt-2 flex justify-between items-center px-2">
                   <p className="text-sm font-semibold">Emerald</p>
@@ -341,21 +341,28 @@ export function PremiumProperties() {
 
               {/* Bottom: wide across both */}
               <figure className="md:col-span-2 relative">
-                <Card image={i3} h="h-[120px] md:h-[350px]" alt="Grand Polo Club & Resort" />
-                
+                <div className="w-full overflow-hidden rounded-2xl shadow-md">
+                  <img
+                    src={i3}
+                    alt="Grand Polo Club & Resort"
+                    className="w-full h-[120px] md:h-[350px]  object-center rounded-2xl"
+                    loading="lazy"
+                  />
+                </div>
+
                 {/* MODIFIED CAPTION AND BUTTON */}
                 <div className="mt-2 flex justify-between items-center px-2">
                   <p className="text-sm font-semibold">THE EMERALD-II</p>
                   <button
-                    onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
+                    onClick={() => openPdf('/assets/pdf/Vantara2.pdf')}
                     className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
                   >
                     Brochure
                   </button>
                 </div>
                 {/* END MODIFIED CAPTION AND BUTTON */}
-
               </figure>
+
             </div>
           </div>
         </div>
@@ -792,9 +799,8 @@ function RecentBlogs() {
           <div className="mt-8 hidden justify-center md:flex">
             <button
               onClick={() => setShowAllModal(true)}
-              className={`inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90 transition-all ${
-                footerVisible ? "opacity-0 pointer-events-none translate-y-2" : "opacity-100"
-              }`}
+              className={`inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90 transition-all ${footerVisible ? "opacity-0 pointer-events-none translate-y-2" : "opacity-100"
+                }`}
               aria-hidden={footerVisible}
             >
               View All Blogs
