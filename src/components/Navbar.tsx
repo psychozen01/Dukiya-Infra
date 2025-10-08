@@ -37,8 +37,9 @@ export default function Navbar() {
             )}
           >
             {/* LEFT: burger (mobile) + brand (always left on larger screens) */}
-            <div className="flex items-center gap-3 min-w-0">
-              {/* Mobile burger */}
+            {/* LEFT: burger (mobile) + brand */}
+            <div className="flex items-center justify-between min-w-0 w-full md:w-auto">
+              {/* Mobile burger (left on mobile) */}
               <button
                 aria-label="Open menu"
                 onClick={() => setOpen(true)}
@@ -47,19 +48,20 @@ export default function Navbar() {
                 <Menu size={20} className="text-white" />
               </button>
 
-              {/* Brand — visible always, but slightly smaller on mobile */}
+              {/* Brand — right on mobile, left on desktop */}
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
-                className="flex items-center h-12"
+                className="flex items-center h-12 ml-auto md:ml-0 md:order-none order-2"
               >
-                <img 
-                  src={logo} 
-                  alt="Dukiya Logo" 
+                <img
+                  src={logo}
+                  alt="Dukiya Logo"
                   className="h-10 w-auto object-contain"
                 />
               </Link>
             </div>
+
 
             {/* CENTER: nav links (hidden on mobile) */}
             <nav className="hidden md:flex items-center justify-center flex-1">
