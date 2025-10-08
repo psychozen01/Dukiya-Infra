@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
+import logo from "../assets/Dukiya-Infra-Logo.jpg";
 
 const links = [
   { label: "Home", to: "/" },
@@ -50,9 +51,13 @@ export default function Navbar() {
               <Link
                 to="/"
                 onClick={() => setOpen(false)}
-                className="select-none text-[13px] md:text-[14px] font-semibold tracking-[0.28em] text-white whitespace-nowrap"
+                className="flex items-center h-12"
               >
-                DUKIYA
+                <img 
+                  src={logo} 
+                  alt="Dukiya Logo" 
+                  className="h-10 w-auto object-contain"
+                />
               </Link>
             </div>
 

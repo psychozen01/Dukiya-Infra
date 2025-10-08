@@ -112,7 +112,46 @@ const Footer: FC = () => {
              Since you asked for equal division, and there are only 4 projects, I've kept the simplest structure that ensures alignment.
           */}
 
-          {/* Follow Us */}
+
+
+          {/* Office Location */}
+          <div>
+            <h4 className="font-serif text-2xl text-[#c2a579]">Office Location</h4>
+            <div className="mt-4 space-y-2 text-sm text-white/85">
+              <p>Shree Shyam Residency,</p>
+              <p>Flat LG -1, Ground Floor, Plot No. 7 (West Part),</p>
+              <p>Dr. Rajendra Prasad Nagar,</p>
+              <p>Near Shyam Baba Temple,</p>
+              <p>Badarwas, Mansarover, Jaipur, Raj-302020</p>
+              <a
+                href="https://maps.google.com/?q=26.877474,75.742828"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center text-[#c2a579] hover:underline"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('https://maps.google.com/?q=26.877474,75.742828', '_blank');
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-1"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                View on Map
+              </a>
+            </div>
+          </div>
+
+
+          {/* Follow us */}
           <div>
             <h4 className="font-serif text-2xl text-[#c2a579]">Follow Us on</h4>
             <div className="mt-4 flex flex-wrap gap-3">
@@ -129,7 +168,6 @@ const Footer: FC = () => {
             </div>
           </div>
 
-          {/* empty/gap column kept for layout symmetry; can be used later */}
         </div>
 
         {/* Divider */}

@@ -3,7 +3,7 @@ import axios from "axios";
 import bg from "../assets/home/img1.svg";
 import { Calendar, Search, X, MapPin, Bed, Maximize, FileText } from "lucide-react"; // Added FileText icon
 
-const WHATSAPP_NUMBER = "8860643975";
+const WHATSAPP_NUMBER = "9216028901";
 const tabs = ["Buy", "Sell", "New Projects", "Plot", "Commercial"] as const;
 
 type Tab = typeof tabs[number];

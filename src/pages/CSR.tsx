@@ -305,7 +305,7 @@ const CSR: React.FC = () => {
             </a>
 
             <a
-              href="https://wa.me/"
+              href="https://wa.me/+919216028901"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black ring-1 ring-black/10 hover:bg-white/90"

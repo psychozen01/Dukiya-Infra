@@ -301,11 +301,11 @@ export function PremiumProperties() {
               {/* Right column: two stacked small cards */}
               <div className="grid gap-10">
                 <figure className="relative">
-                  <Card image={i2} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
+                  <Card image={i4} h="h-[180px] md:h-[190px]" alt="Grand Polo Club & Resort" />
 
                   {/* MODIFIED CAPTION AND BUTTON */}
                   <div className="mt-2 flex justify-between items-center px-2">
-                    <p className="text-sm font-semibold">SIDDHI HOMES REALTY</p>
+                    <p className="text-sm font-semibold">VANTARA</p>
                     <button
                       onClick={() => openPdf("/assets/pdf/siddhi-homes.pdf")}
                       className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
@@ -319,14 +319,14 @@ export function PremiumProperties() {
 
                 <figure className="relative">
                   <Card
-                    image={i3}
+                    image={i2}
                     h="h-[180px] md:h-[190px]"
                     alt="Kardhani Prime At 9 — Dukan, Jaipur"
                   />
 
                   {/* MODIFIED CAPTION AND BUTTON */}
                   <div className="mt-2 flex justify-between items-center px-2">
-                    <p className="text-sm font-semibold">SHREE SHYAM ENTERPRISES</p>
+                    <p className="text-sm font-semibold">Valenza</p>
                     <button
                       onClick={() => openPdf("/assets/pdf/Valenza-PPT.pdf")}
                       className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
@@ -341,11 +341,11 @@ export function PremiumProperties() {
 
               {/* Bottom: wide across both */}
               <figure className="md:col-span-2 relative">
-                <Card image={i4} h="h-[220px] md:h-[240px]" alt="Grand Polo Club & Resort" />
+                <Card image={i3} h="h-[120px] md:h-[350px]" alt="Grand Polo Club & Resort" />
                 
                 {/* MODIFIED CAPTION AND BUTTON */}
                 <div className="mt-2 flex justify-between items-center px-2">
-                  <p className="text-sm font-semibold">ARD BUILDHOME PRIVATE LIMITED</p>
+                  <p className="text-sm font-semibold">THE EMERALD-II</p>
                   <button
                     onClick={() => openPdf("/assets/pdf/Vantara2.pdf")}
                     className="ml-4 text-sm font-bold py-1 px-2 text-[#b4956a] border border-[#b4956a] rounded-md hover:bg-[#b4956a] hover:text-white transition-colors"
@@ -1026,7 +1026,7 @@ function ExpressInterest() {
               </a>
 
               <a
-                href="https://wa.me/"
+                href="https://wa.me/+919216028901"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black ring-1 ring-black/10 hover:bg-white/90"

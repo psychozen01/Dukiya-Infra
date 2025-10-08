@@ -4,7 +4,7 @@ import hero from "@/assets/about/hero.svg";
 import bg1 from "@/assets/about/bg1.svg";
 import { ChevronLeft, ChevronRight, Facebook, Instagram, Twitter, Linkedin, Send } from "lucide-react";
 import aboutImg1 from "@/assets/about/img1.svg";
-import founderImg from "@/assets/about/user.svg";
+import founderImg from "@/assets/founder.jpg";
 /* -------------------- Page -------------------- */
 
 const About = () => {
@@ -13,8 +13,8 @@ const About = () => {
       <AboutHero />
       <AboutStoryBand />
       <AboutDukiyaStory />
-      <AboutPillars />  
-      <AboutFounder /> 
+      <AboutPillars />
+      <AboutFounder />
     </main>
   );
 };
@@ -86,18 +86,16 @@ function AboutStoryBand() {
 
             <div className="mx-auto mt-6 max-w-[840px] space-y-5 text-center text-[13px] md:text-[14px] leading-6 text-[#3a3a3a]">
               <p>
-                DUKIYA was founded in 2005 with a vision to be the best in class, in every class.
-                Transcending property and space, this vision imagines the extraordinary and builds it into reality.
+                With over 18 years of experience in Jaipur's real estate industry, Dukiya Infra has earned a strong reputation for trust, quality and on-time delivery. The Group has successfully completed 50 projects across prime locations in Jaipur, including premium villas, modern apartments and thoughtfully planned residential communities. Vantara and The Emerald are few of the gems of the group's vast portfolio.
+
               </p>
               <p className="font-semibold text-[#705e45]">We call this The Art of Elevation.</p>
               <p>
-                We elevate the exceptional to create immersive living experiences that redefine the concept of luxury living.
-                These are works of art, and for us, art is more than a simple statement of luxury. Art is the ultimate expression
-                of creativity, quality and rarity. A combination of intellect and artistry, originating from both the mind and the heart.
+                Renowned for its swift construction pace and timely deliveries, Dukiya Infra has won the trust of over a thousand satisfied families. Every project is a testament to high construction standards, aesthetic design, meticulous planning and a deep understanding of customer needs.
+
               </p>
               <p>
-                Together, we are setting new benchmarks of excellence for the UAE and across the globe, inspiring the world’s changemakers
-                to invest and make their homes in the city of tomorrow.
+                A steadfast commitment to timely delivery and customer satisfaction has made Dukiya Infra the preferred choice for those seeking well-crafted homes in Jaipur's most sought-after neighborhoods.
               </p>
             </div>
           </div>
@@ -294,13 +292,16 @@ function AboutFounder() {
               ARCHITECTURE
             </h3>
 
-            <p className="mt-5 max-w-[48ch] text-[13px] md:text-[14px] leading-6 text-[#333]">
-              Mahdi Amjad, Founder and Executive Chairman of OMNIYAT, has dynamically transformed
-              Dubai’s architectural landscape. Establishing OMNIYAT in 2005, he prioritized design
-              and art, resulting in large-scale collaborations with award-winning designers. Under
-              his leadership, OMNIYAT has marked its presence with unique projects, consistently
-              delivering quality and value across all. His vision continues to shape vantage
-              locations within master communities.
+            <p className="mt-5 max-w-[99ch] text-[13px] md:text-[14px] leading-6 text-[#333]">
+              Mr. Rajesh Ji Dukiya, the visionary founder of Dukiya Infra Pvt. Ltd., was born into a humble farmer’s family. His early education was completed in a government school, followed by a Bachelor’s degree in Economics. With big dreams and determination, he moved to Jaipur in 2003 with a vision to build a career in the real estate sector.
+
+              He began his journey in real estate alongside his maternal uncle and cousin brother by dealing in plots and land. Recognizing the vast potential of the industry, he soon expanded his vision and registered his first venture, Shree Shyam Builders and Developers (LLP), focusing on G+6 residential projects. Over time, he also established ARD Builders and Developers, where he dedicated himself to delivering premium flats and villas for the elite class of society. With more than 50+ successful projects, he earned recognition for quality and commitment.
+
+              However, Mr. Dukiya noticed a major gap in the market — middle-class families were often deprived of good-quality, affordable housing. Many builders compromised on construction materials in low-budget flats, leaving families with poor living standards. Determined to change this, he founded Dukiya Infra Pvt. Ltd., with the mission to make premium-quality, multi-storey residential projects accessible and affordable for every class of society.
+
+              Under Dukiya Infra, he launched landmark projects such as Valenza, Emerald, and Vantara, which reflect his philosophy of blending quality with affordability. His vision now extends beyond Jaipur, aiming to bring affordable yet premium homes to metropolitan cities like Delhi, Mumbai, and Gurgaon, solving a long-standing challenge in the real estate sector.
+
+              Through hard work, integrity, and innovation, Mr. Rajesh Ji Dukiya continues to transform the real estate landscape, striving to fulfill his dream of making quality homes a reality for every family.
             </p>
 
             {/* Social icons row */}
@@ -323,7 +324,7 @@ function AboutFounder() {
               />
             </div>
             <div className="mt-4 text-center">
-              <div className="font-semibold text-[#191919]">Mahdi Amjad</div>
+              <div className="font-semibold text-[#191919]">Mr. Rajesh Dukiya</div>
               <div className="text-[12px] text-[#6b6b6b]">
                 Founder and Executive Chairman
               </div>
