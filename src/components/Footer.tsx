@@ -37,7 +37,7 @@ const Footer: FC = () => {
       // source: siddhi-homes.pdf. :contentReference[oaicite:2]{index=2}
     },
     {
-      title: "Valenza (presentation)",
+      title: "Valenza",
       short:
         "Project presentation available (Valenza PPT — April 2025). Refer to PDF for full design & delivery details.",
       note: "See Valenza PPT (uploaded).",

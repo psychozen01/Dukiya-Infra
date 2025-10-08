@@ -266,6 +266,7 @@ export function PremiumProperties() {
 
             <Link
               to="/properties"
+              onClick={() => window.scrollTo(0, 0)}
               className="mt-7 inline-flex rounded-md bg-[#b4956a] px-4 py-2 text-[12px] font-semibold text-black shadow-sm hover:opacity-90"
             >
               View All Properties
