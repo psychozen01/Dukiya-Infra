@@ -1,10 +1,49 @@
 import { Quote, Star, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+
 import user1 from "../assets/testimonial/user1.svg";
 import user2 from "../assets/testimonial/user2.svg";
 import user3 from "../assets/testimonial/user3.svg";
 import bg from "../assets/testimonial/bg.svg";
 
+const testimonials = [
+  {
+    id: 1,
+    text: `"Working with this company was a pleasure. They were professional, efficient, and delivered exactly what they promised."`,
+    author: "Pardeep Choudhary",
+    location: "Jaipur, Rajasthan",
+  },
+  {
+    id: 2,
+    text: `"Their attention to detail and dedication to client satisfaction are unmatched. Highly recommend!"`,
+    author: "Simran Mehta",
+    location: "Delhi, India",
+  },
+  {
+    id: 3,
+    text: `"Excellent experience — transparent process and delivered beyond expectations."`,
+    author: "Aarav Sharma",
+    location: "Gurugram, Haryana",
+  },
+];
+
 const TestimonialSection = () => {
+  const [index, setIndex] = useState(0);
+
+  // Auto-slide every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const next = () => setIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+  const testimonial = testimonials[index];
+
   return (
     <>
       {/* Testimonial Section */}
@@ -22,41 +61,64 @@ const TestimonialSection = () => {
           </h2>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
-            {/* Left Testimonial */}
-            <div className="w-full md:max-w-md text-white p-5 sm:p-6 rounded-2xl bg-black/20 backdrop-blur-[1px] border border-white/10 shadow-lg">
-              <Quote className="text-[#b4956a] w-6 h-6 sm:w-7 sm:h-7 mb-4" />
-              <p className="italic font-serif text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed">
-                "Working with this company was a pleasure. They were
-                professional, efficient, and delivered exactly what they
-                promised."
-              </p>
+            {/* Left: Testimonial Carousel */}
+            <div className="w-full md:max-w-md text-white p-5 sm:p-6 rounded-2xl bg-black/20 backdrop-blur-[1px] border border-white/10 shadow-lg overflow-hidden relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Quote className="text-[#b4956a] w-6 h-6 sm:w-7 sm:h-7 mb-4" />
+                  <p className="italic font-serif text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed">
+                    {testimonial.text}
+                  </p>
 
-              {/* Stars */}
-              <div className="flex mt-4 sm:mt-5 text-yellow-400">
-                {Array(5)
-                  .fill(0)
-                  .map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 stroke-yellow-400"
-                    />
-                  ))}
-              </div>
+                  {/* Stars */}
+                  <div className="flex mt-4 sm:mt-5 text-yellow-400">
+                    {Array(5)
+                      .fill(0)
+                      .map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 stroke-yellow-400"
+                        />
+                      ))}
+                  </div>
+
+                  {/* Author */}
+                  <div className="mt-5 sm:mt-6">
+                    <p className="font-semibold text-white text-sm sm:text-base">
+                      — {testimonial.author}
+                    </p>
+                    <p className="text-gray-400 text-xs sm:text-sm">{testimonial.location}</p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
 
               {/* Navigation */}
-              <div className="flex gap-3 mt-6 sm:mt-8">
-                <button className="bg-[#b4956a] text-white p-2 rounded-md hover:bg-[#9c7a4f] transition">
+              <div className="flex gap-3 mt-8 sm:mt-10">
+                <button
+                  onClick={prev}
+                  className="bg-[#b4956a] text-white p-2 rounded-md hover:bg-[#9c7a4f] transition"
+                  aria-label="Previous"
+                >
                   <ChevronLeft size={18} />
                 </button>
-                <button className="bg-[#b4956a] text-white p-2 rounded-md hover:bg-[#9c7a4f] transition">
+                <button
+                  onClick={next}
+                  className="bg-[#b4956a] text-white p-2 rounded-md hover:bg-[#9c7a4f] transition"
+                  aria-label="Next"
+                >
                   <ChevronRight size={18} />
                 </button>
               </div>
             </div>
 
-            {/* Right Users Section */}
+            {/* Right: Main & Floating Users */}
             <div className="relative flex items-center justify-center mt-10 md:mt-0">
-              {/* Main User */}
               <div className="relative text-center">
                 <img
                   src={user1}
@@ -88,71 +150,53 @@ const TestimonialSection = () => {
       </section>
 
       {/* Instant Call & WhatsApp Section */}
-  <section className="py-16 md:py-20 text-neutral-900">
-      <div className="mx-auto max-w-[1100px] px-4 md:px-6">
-        {/* Heading */}
-        <h2 className="text-center font-serif text-3xl md:text-5xl font-semibold">
-          Express your interest
-        </h2>
+      <section className="py-16 md:py-20 text-neutral-900">
+        <div className="mx-auto max-w-[1100px] px-4 md:px-6">
+          <h2 className="text-center font-serif text-3xl md:text-5xl font-semibold">
+            Express your interest
+          </h2>
 
-        {/* Form card with Formspree integration */}
-       
-        {/* Promo banner */}
-        <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
-          <div className="grid gap-6 md:grid-cols-2 md:items-center">
-            <div>
-              <h3 className="font-serif text-xl md:text-2xl">
-                Schedule a <span className="text-[#b4956a]">Meeting</span> and{" "}
-                <span className="text-[#b4956a]">WhatsApp Chat</span>
-              </h3>
-              <p className="mt-2 text-sm text-neutral-700">
-                Book a time that works for you and we'll get in touch to discuss your project.
-              </p>
-            </div>
+          <div className="mt-10 rounded-2xl bg-[#efe7de]/60 px-6 py-8">
+            <div className="grid gap-6 md:grid-cols-2 md:items-center">
+              <div>
+                <h3 className="font-serif text-xl md:text-2xl">
+                  Schedule a <span className="text-[#b4956a]">Meeting</span> and{" "}
+                  <span className="text-[#b4956a]">WhatsApp Chat</span>
+                </h3>
+                <p className="mt-2 text-sm text-neutral-700">
+                  Book a time that works for you and we'll get in touch to discuss your project.
+                </p>
+              </div>
 
-            <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
-              <a
-                href="https://calendly.com/bishtyash069/30min"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-black hover:opacity-90"
-              >
-                <Calendar className="h-4 w-4 text-black" />
-                Schedule a Meeting
-              </a>
+              <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
+                <a
+                  href="https://calendly.com/bishtyash069/30min"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#b4956a] px-4 py-2 text-sm font-medium text-black hover:opacity-90"
+                >
+                  <Calendar className="h-4 w-4 text-black" />
+                  Schedule a Meeting
+                </a>
 
-              <a
-                href="https://wa.me/+919216028901"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black ring-1 ring-black/10 hover:bg-white/90"
-              >
-                <img
-                  alt=""
-                  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                  className="h-4 w-4"
-                />
-                WhatsApp Chat
-              </a>
+                <a
+                  href="https://wa.me/+919216028901"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black ring-1 ring-black/10 hover:bg-white/90"
+                >
+                  <img
+                    alt=""
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    className="h-4 w-4"
+                  />
+                  WhatsApp Chat
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Local styles for fields to keep markup lean */}
-      <style>{`
-        .field {
-          display:flex; align-items:center; gap:.5rem;
-          border:1px solid rgba(0,0,0,.15); border-radius:.5rem;
-          padding:.5rem .75rem; background: white;
-        }
-        .field.multiline { align-items:flex-start; }
-        .field-input {
-          width:100%; background:transparent; outline:none;
-          font-size:.9rem; color:#0b0f15;
-        }
-      `}</style>
-    </section>
+      </section>
     </>
   );
 };
