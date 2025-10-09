@@ -1,5 +1,5 @@
 // src/pages/Properties.tsx
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import bg from "../assets/home/img1.svg";
 import {
