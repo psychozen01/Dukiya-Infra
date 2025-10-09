@@ -236,6 +236,9 @@ export default function Properties(){
 
   const API_BASE = (import.meta && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) || "https://dukiya-server.onrender.com";
 
+  // const API_BASE = (import.meta && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) || "http://localhost:8000";
+  
+
   const abortRef = useRef<AbortController | null>(null);
   const debounceRef = useRef<any>(null);
   const DEBOUNCE_MS = 450;

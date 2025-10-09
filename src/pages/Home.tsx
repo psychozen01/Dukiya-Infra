@@ -569,6 +569,7 @@ function RecentBlogs() {
     const fetchBlogs = async () => {
       try {
         const res = await fetch("https://dukiya-server.onrender.com/api/blogs");
+        // const res = await fetch("http://localhost:8000/api/blogs");
         if (!res.ok) throw new Error(`Status ${res.status}`);
         const data = await res.json();
         if (!data.success || !Array.isArray(data.items)) {
