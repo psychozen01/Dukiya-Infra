@@ -237,9 +237,7 @@ function AboutPillars() {
 
               <div className="mt-4 space-y-4 text-[13px] md:text-[14px] leading-6 text-[#333]">
                 <p>
-                  From architectural collaborations with icons of industry such as Zaha Hadid and Norman Foster,
-                  to hospitality and service partners such as the sector-leading Dorchester Collection, we continue
-                  to seek enduring relationships that become part of our story and legacy.
+                  At our real estate firm, Setting Benchmark isn’t just a phrase—it’s our philosophy. We strive to redefine industry standards by delivering projects that embody excellence in design, transparency, and customer satisfaction. From innovative architecture to meticulous execution, every property we create becomes a reference point for quality and trust. Our commitment to ethical practices, timely delivery, and value-driven service positions us as a benchmark for others to follow in the real estate landscape.
                 </p>
                 <p>
                   From architectural collaborations with icons of industry such as Zaha Hadid and Norman Foster,
