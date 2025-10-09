@@ -1,3 +1,4 @@
+// src/pages/Properties.tsx
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import bg from "../assets/home/img1.svg";
@@ -91,7 +92,9 @@ function ImageGallery({ images }: { images: ImageItem[] }) {
                   e.stopPropagation();
                   setIndex(idx);
                 }}
-                className={`flex-shrink-0 rounded-md overflow-hidden border ${idx === index ? "ring-2 ring-[#c2a579]" : "border-gray-200"}`}
+                className={`flex-shrink-0 rounded-md overflow-hidden border ${
+                  idx === index ? "ring-2 ring-[#c2a579]" : "border-gray-200"
+                }`}
                 style={{ width: 80, height: 56 }}
                 aria-label={`Select image ${idx + 1}`}
               >
@@ -180,9 +183,7 @@ function PropertyDetailModal({ property, onClose }: { property: Property; onClos
 
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=I'm interested in the property: ${encodeURIComponent(
-                  (property && property.title) || ""
-                )} (${(property && property._id) || ""})`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=I'm interested in the property: ${encodeURIComponent((property && property.title) || "")} (${(property && property._id) || ""})`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex flex-1 items-center justify-center gap-2 bg-green-500 text-white px-4 py-3 rounded-md text-base font-semibold hover:bg-green-600 transition shadow-lg"
@@ -208,9 +209,7 @@ function PropertyDetailModal({ property, onClose }: { property: Property; onClos
               ) : (
                 <button
                   className="flex-1 bg-[#c2a579] text-black px-4 py-3 rounded-md text-base font-semibold shadow-lg hover:opacity-95 transition"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
+                  onClick={(e) => e.stopPropagation()}
                 >
                   Book Site Visit
                 </button>
@@ -224,8 +223,9 @@ function PropertyDetailModal({ property, onClose }: { property: Property; onClos
 }
 
 export default function Properties() {
+  // active is read by fetch; q is kept readonly (no setQ) to avoid unused setter
   const [active] = useState<string>(DEFAULT_STATUS);
-  const [q, setQ] = useState<string>("");
+  const [q] = useState<string>(""); // kept because fetch effects use 'q'
   const [page, setPage] = useState<number>(1);
   const perPage = 12;
 
@@ -310,7 +310,7 @@ export default function Properties() {
     fetchProperties(page, { q, status: active });
   }, [page, active, fetchProperties, q]);
 
-  // debounce text query
+  // debounce text query (q) — q is currently read-only; kept so re-enabling search is trivial
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
@@ -323,16 +323,6 @@ export default function Properties() {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
   }, [q, active, fetchProperties]);
-
-  const onSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    setPage(1);
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-      debounceRef.current = null;
-    }
-    fetchProperties(1, { q, status: active });
-  };
 
   useEffect(() => {
     return () => {
