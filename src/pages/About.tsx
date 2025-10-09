@@ -214,7 +214,7 @@ function AboutPillars() {
         </h2>
         <p className="mx-auto mt-3 max-w-3xl text-center text-[13px] md:text-[14px] leading-6 text-[#333]">
           There is an underscored connection between art and architecture and an unwavering ambition to achieve the unimaginable.
-          OMNIYAT — which translates to ‘wishes’ — showcases the pursuit of inspirational distinction.
+
         </p>
 
         {/* content grid */}
