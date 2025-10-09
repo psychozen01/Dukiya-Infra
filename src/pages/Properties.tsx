@@ -1,10 +1,9 @@
-// Properties.tsx
+
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import bg from "../assets/home/img1.svg";
 import {
   Calendar,
-  Search,
   X,
   MapPin,
   Bed,
@@ -382,7 +381,7 @@ export default function Properties(){
       >
         <div className="absolute inset-0 bg-black/65" />
 
-        <div className="relative z-20 flex h-full items-center justify-center py-16">
+        {/* <div className="relative z-20 flex h-full items-center justify-center py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full">
             <div className="bg-black/80 border border-white/10 rounded-xl shadow-lg px-4 py-3">
               <div className="flex justify-center">
@@ -440,7 +439,7 @@ export default function Properties(){
               </form>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 md:mt-16 mb-16">
