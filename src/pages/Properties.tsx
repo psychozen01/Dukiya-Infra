@@ -1,10 +1,8 @@
-
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import bg from "../assets/home/img1.svg";
 import {
   Calendar,
-  Search,
   X,
   MapPin,
   Bed,
@@ -15,7 +13,7 @@ import {
 } from "lucide-react";
 
 const WHATSAPP_NUMBER = "9216028901";
-const tabs = ["Buy", "Sell", "New Projects", "Plot", "Commercial"];
+const DEFAULT_STATUS = "Buy";
 
 type ImageItem = { url: string };
 type Brochure = { url: string };
@@ -108,7 +106,10 @@ function ImageGallery({ images }: { images: ImageItem[] }) {
 }
 
 function PropertyDetailModal({ property, onClose }: { property: Property; onClose: () => void }) {
-  const images = property && property.images && property.images.length ? property.images : [{ url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'/%3E" }];
+  const images =
+    property && property.images && property.images.length
+      ? property.images
+      : [{ url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'/%3E" }];
   const brochureUrl = property && property.brochure && property.brochure.url;
 
   return (
@@ -179,7 +180,9 @@ function PropertyDetailModal({ property, onClose }: { property: Property; onClos
 
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=I'm interested in the property: ${encodeURIComponent((property && property.title) || "")} (${(property && property._id) || ""})`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=I'm interested in the property: ${encodeURIComponent(
+                  (property && property.title) || ""
+                )} (${(property && property._id) || ""})`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex flex-1 items-center justify-center gap-2 bg-green-500 text-white px-4 py-3 rounded-md text-base font-semibold hover:bg-green-600 transition shadow-lg"
@@ -221,7 +224,7 @@ function PropertyDetailModal({ property, onClose }: { property: Property; onClos
 }
 
 export default function Properties() {
-  const [active, setActive] = useState<string>(tabs[0]);
+  const [active] = useState<string>(DEFAULT_STATUS);
   const [q, setQ] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const perPage = 12;
@@ -274,7 +277,6 @@ export default function Properties() {
         if (res && res.data && Array.isArray(res.data.items)) {
           setData(res.data);
         } else {
-          // fallback guard if API shapes differently
           setData({
             page: p,
             perPage,
@@ -303,12 +305,12 @@ export default function Properties() {
     [API_BASE, buildParams, perPage]
   );
 
-  // fetch on page or tab change (status)
+  // initial load & page changes
   useEffect(() => {
     fetchProperties(page, { q, status: active });
   }, [page, active, fetchProperties, q]);
 
-  // debounce text query (q)
+  // debounce text query
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
@@ -330,11 +332,6 @@ export default function Properties() {
       debounceRef.current = null;
     }
     fetchProperties(1, { q, status: active });
-  };
-
-  const onTabClick = (t: string) => {
-    setActive(t);
-    setPage(1);
   };
 
   useEffect(() => {
@@ -368,48 +365,7 @@ export default function Properties() {
         <div className="absolute inset-0 bg-black/65" />
 
         <div className="relative z-20 flex h-full items-center justify-center py-16">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full">
-            <div className="bg-black/80 border border-white/10 rounded-xl shadow-lg px-4 py-3">
-              <div className="flex justify-center">
-                <div className="flex gap-3 flex-wrap justify-center">
-                  {tabs.map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => onTabClick(t)}
-                      className={`px-4 py-2 rounded-md text-sm font-medium transition ${active === t ? "bg-[#c2a579] text-black" : "text-white border border-white/10 hover:bg-white/5"}`}
-                      aria-pressed={active === t}
-                    >
-                      {t}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <form
-                onSubmit={onSearch}
-                className="mt-4 bg-white rounded-xl shadow-lg border border-gray-200 px-4 py-3 flex flex-col md:flex-row items-center gap-3"
-                role="search"
-                aria-label="Property search"
-              >
-                <div className="flex items-center flex-1 rounded-md border border-gray-200 overflow-hidden min-w-0 bg-white">
-                  <div className="px-3 flex-shrink-0">
-                    <Search size={18} className="text-gray-500" />
-                  </div>
-                  <input
-                    value={q}
-                    onChange={(e) => setQ(e.target.value)}
-                    placeholder="City, COMMUNITY OR BUILDING"
-                    className="flex-1 px-3 py-3 text-sm text-gray-800 outline-none min-w-0"
-                    aria-label="Search by city, community or building"
-                  />
-                </div>
-
-                <button type="submit" className="w-full md:w-auto rounded-md px-6 py-3 bg-[#c2a579] text-black font-semibold hover:opacity-95 transition" aria-label="Search">
-                  Search
-                </button>
-              </form>
-            </div>
-          </div>
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full" />
         </div>
       </section>
 
