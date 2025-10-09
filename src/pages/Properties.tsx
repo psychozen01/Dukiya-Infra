@@ -1,3 +1,4 @@
+// Properties.tsx
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import bg from "../assets/home/img1.svg";
@@ -16,8 +17,32 @@ import {
 const WHATSAPP_NUMBER = "9216028901";
 const tabs = ["Buy", "Sell", "New Projects", "Plot", "Commercial"];
 
-function ImageGallery({ images }) {
-  const [index, setIndex] = useState(0);
+type ImageItem = { url: string };
+type Brochure = { url: string };
+
+export type Property = {
+  _id?: string;
+  title?: string;
+  images?: ImageItem[];
+  status?: string;
+  deliveryDate?: string;
+  bedrooms?: string;
+  area?: string;
+  price?: string;
+  location?: string;
+  description?: string;
+  brochure?: Brochure;
+};
+
+type DataShape = {
+  page: number;
+  perPage: number;
+  total: number;
+  items: Property[];
+};
+
+function ImageGallery({ images }: { images: ImageItem[] }) {
+  const [index, setIndex] = useState<number>(0);
   useEffect(() => setIndex(0), [images]);
 
   if (!images || images.length === 0) {
@@ -82,7 +107,7 @@ function ImageGallery({ images }) {
   );
 }
 
-function PropertyDetailModal({ property, onClose }) {
+function PropertyDetailModal({ property, onClose }: { property: Property; onClose: () => void }) {
   const images = property && property.images && property.images.length ? property.images : [{ url: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'/%3E" }];
   const brochureUrl = property && property.brochure && property.brochure.url;
 
@@ -195,41 +220,44 @@ function PropertyDetailModal({ property, onClose }) {
   );
 }
 
-export default function Properties() {
-  const [active, setActive] = useState(tabs[0]);
-  const [q, setQ] = useState("");
-  const [type, setType] = useState("");
-  const [beds, setBeds] = useState("");
-  const [page, setPage] = useState(1);
+export default function Properties(){
+  const [active, setActive] = useState<string>(tabs[0]);
+  const [q, setQ] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [beds, setBeds] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
   const perPage = 12;
 
-  const [data, setData] = useState({ page: 1, perPage, total: 0, items: [] });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState<DataShape>({ page: 1, perPage, total: 0, items: [] });
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
 
-  const API_BASE = (import.meta && import.meta.env && import.meta.env.VITE_API_URL) || "https://dukiya-server.onrender.com";
+  const API_BASE = (import.meta && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) || "https://dukiya-server.onrender.com";
 
-  const abortRef = useRef(null);
-  const debounceRef = useRef(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const debounceRef = useRef<any>(null);
   const DEBOUNCE_MS = 450;
 
-  const buildParams = useCallback((p, { q: qParam, type: typeParam, beds: bedsParam, status: statusParam } = {}) => {
-    const params = { page: p, perPage };
-    if (qParam && qParam.trim() !== "") params.q = qParam.trim();
-    if (typeParam) params.type = typeParam;
-    if (bedsParam) params.beds = bedsParam;
-    if (statusParam) params.status = statusParam;
-    return params;
-  }, [perPage]);
+  const buildParams = useCallback(
+    (p: number, { q: qParam, type: typeParam, beds: bedsParam, status: statusParam }: { q?: string; type?: string; beds?: string; status?: string } = {}) => {
+      const params: Record<string, any> = { page: p, perPage };
+      if (qParam && qParam.trim() !== "") params.q = qParam.trim();
+      if (typeParam) params.type = typeParam;
+      if (bedsParam) params.beds = bedsParam;
+      if (statusParam) params.status = statusParam;
+      return params;
+    },
+    [perPage]
+  );
 
   const fetchProperties = useCallback(
-    async (p = 1, filters = {}) => {
+    async (p = 1, filters: { q?: string; type?: string; beds?: string; status?: string } = {}) => {
       if (abortRef.current) {
         try {
           abortRef.current.abort();
-        } catch (e) {
+        } catch (_e) {
           // ignore
         }
       }
@@ -239,7 +267,7 @@ export default function Properties() {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`${API_BASE}/api/properties`, {
+        const res = await axios.get<DataShape>(`${API_BASE}/api/properties`, {
           params: buildParams(p, filters),
           signal: controller.signal,
           timeout: 30000,
@@ -248,21 +276,22 @@ export default function Properties() {
         if (res && res.data && Array.isArray(res.data.items)) {
           setData(res.data);
         } else {
+          // fallback guard if API shapes differently
           setData({
             page: p,
             perPage,
-            total: (res.data && res.data.total) || 0,
-            items: (res.data && res.data.items) || [],
+            total: (res.data && (res.data as any).total) || 0,
+            items: (res.data && (res.data as any).items) || [],
           });
         }
-      } catch (err) {
+      } catch (err: any) {
         if ((axios.isCancel && axios.isCancel(err)) || (err && err.name === "CanceledError")) {
           // no-op for cancellations
         } else {
           console.error("fetchProperties error:", err);
           let message = "Failed to load properties";
           if (axios.isAxiosError && axios.isAxiosError(err)) {
-            message = (err.response && err.response.data && err.response.data.error) || err.message || message;
+            message = (err.response && (err.response.data as any)?.error) || err.message || message;
           } else if (err && err.message) {
             message = err.message;
           }
@@ -295,7 +324,7 @@ export default function Properties() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
 
-  const onSearch = (e) => {
+  const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setPage(1);
     if (debounceRef.current) {
@@ -305,17 +334,17 @@ export default function Properties() {
     fetchProperties(1, { q, type, beds, status: active });
   };
 
-  const onTypeChange = (val) => {
+  const onTypeChange = (val: string) => {
     setType(val);
     setPage(1);
   };
 
-  const onBedsChange = (val) => {
+  const onBedsChange = (val: string) => {
     setBeds(val);
     setPage(1);
   };
 
-  const onTabClick = (t) => {
+  const onTabClick = (t: string) => {
     setActive(t);
     setPage(1);
   };
@@ -325,7 +354,7 @@ export default function Properties() {
       if (abortRef.current) {
         try {
           abortRef.current.abort();
-        } catch (e) {
+        } catch (_e) {
           // ignore
         }
       }
@@ -336,7 +365,7 @@ export default function Properties() {
     };
   }, []);
 
-  const items = (data && data.items) || [];
+  const items = data.items || [];
 
   return (
     <div className="min-h-screen bg-white">
@@ -417,7 +446,7 @@ export default function Properties() {
             <span className="text-xl">🏠</span>
             <h3 className="text-lg md:text-2xl font-semibold text-gray-800">Properties for sale in Jaipur</h3>
           </div>
-          <div className="text-sm text-gray-500">{(data && data.total) || 0} Units</div>
+          <div className="text-sm text-gray-500">{data.total || 0} Units</div>
         </div>
 
         {loading ? (
@@ -430,7 +459,7 @@ export default function Properties() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {items.map((p) => (
               <div
-                key={p._id}
+                key={p._id || Math.random().toString(36).slice(2)}
                 role="button"
                 tabIndex={0}
                 onClick={() => setSelectedProperty(p)}
