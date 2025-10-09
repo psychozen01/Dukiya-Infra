@@ -4,6 +4,7 @@ import axios from "axios";
 import bg from "../assets/home/img1.svg";
 import {
   Calendar,
+  Search,
   X,
   MapPin,
   Bed,
@@ -219,11 +220,9 @@ function PropertyDetailModal({ property, onClose }: { property: Property; onClos
   );
 }
 
-export default function Properties(){
+export default function Properties() {
   const [active, setActive] = useState<string>(tabs[0]);
   const [q, setQ] = useState<string>("");
-  const [type, setType] = useState<string>("");
-  const [beds, setBeds] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const perPage = 12;
 
@@ -233,21 +232,18 @@ export default function Properties(){
 
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
 
-  const API_BASE = (import.meta && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) || "https://dukiya-server.onrender.com";
-
-  // const API_BASE = (import.meta && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) || "http://localhost:8000";
-  
+  const API_BASE =
+    (import.meta && (import.meta as any).env && (import.meta as any).env.VITE_API_URL) ||
+    "https://dukiya-server.onrender.com";
 
   const abortRef = useRef<AbortController | null>(null);
   const debounceRef = useRef<any>(null);
   const DEBOUNCE_MS = 450;
 
   const buildParams = useCallback(
-    (p: number, { q: qParam, type: typeParam, beds: bedsParam, status: statusParam }: { q?: string; type?: string; beds?: string; status?: string } = {}) => {
+    (p: number, { q: qParam, status: statusParam }: { q?: string; status?: string } = {}) => {
       const params: Record<string, any> = { page: p, perPage };
       if (qParam && qParam.trim() !== "") params.q = qParam.trim();
-      if (typeParam) params.type = typeParam;
-      if (bedsParam) params.beds = bedsParam;
       if (statusParam) params.status = statusParam;
       return params;
     },
@@ -255,7 +251,7 @@ export default function Properties(){
   );
 
   const fetchProperties = useCallback(
-    async (p = 1, filters: { q?: string; type?: string; beds?: string; status?: string } = {}) => {
+    async (p = 1, filters: { q?: string; status?: string } = {}) => {
       if (abortRef.current) {
         try {
           abortRef.current.abort();
@@ -307,24 +303,24 @@ export default function Properties(){
     [API_BASE, buildParams, perPage]
   );
 
+  // fetch on page or tab change (status)
   useEffect(() => {
-    fetchProperties(page, { q, type, beds, status: active });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, active, type, beds]);
+    fetchProperties(page, { q, status: active });
+  }, [page, active, fetchProperties, q]);
 
+  // debounce text query (q)
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
     debounceRef.current = setTimeout(() => {
       setPage(1);
-      fetchProperties(1, { q, type, beds, status: active });
+      fetchProperties(1, { q, status: active });
     }, DEBOUNCE_MS);
 
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q]);
+  }, [q, active, fetchProperties]);
 
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -333,17 +329,7 @@ export default function Properties(){
       clearTimeout(debounceRef.current);
       debounceRef.current = null;
     }
-    fetchProperties(1, { q, type, beds, status: active });
-  };
-
-  const onTypeChange = (val: string) => {
-    setType(val);
-    setPage(1);
-  };
-
-  const onBedsChange = (val: string) => {
-    setBeds(val);
-    setPage(1);
+    fetchProperties(1, { q, status: active });
   };
 
   const onTabClick = (t: string) => {
@@ -381,7 +367,7 @@ export default function Properties(){
       >
         <div className="absolute inset-0 bg-black/65" />
 
-        {/* <div className="relative z-20 flex h-full items-center justify-center py-16">
+        <div className="relative z-20 flex h-full items-center justify-center py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full">
             <div className="bg-black/80 border border-white/10 rounded-xl shadow-lg px-4 py-3">
               <div className="flex justify-center">
@@ -418,28 +404,13 @@ export default function Properties(){
                   />
                 </div>
 
-                <select value={type} onChange={(e) => onTypeChange(e.target.value)} className="w-full md:w-48 rounded-md border border-gray-200 bg-white text-sm px-3 py-3" aria-label="Property type">
-                  <option value="">Property Type</option>
-                  <option value="residential">Residential</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="plot">Plot</option>
-                </select>
-
-                <select value={beds} onChange={(e) => onBedsChange(e.target.value)} className="w-full md:w-40 rounded-md border border-gray-200 bg-white text-sm px-3 py-3" aria-label="Bedrooms">
-                  <option value="">Bedroom</option>
-                  <option value="1BHK">1 BHK</option>
-                  <option value="2BHK">2 BHK</option>
-                  <option value="3BHK">3 BHK</option>
-                  <option value="4+BHK">4+ BHK</option>
-                </select>
-
                 <button type="submit" className="w-full md:w-auto rounded-md px-6 py-3 bg-[#c2a579] text-black font-semibold hover:opacity-95 transition" aria-label="Search">
                   Search
                 </button>
               </form>
             </div>
           </div>
-        </div> */}
+        </div>
       </section>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 md:mt-16 mb-16">
