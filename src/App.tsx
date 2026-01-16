@@ -15,8 +15,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route index element={<TempHome />} />
         <Route element={<Layout />}>
-          <Route index element={<TempHome />} />
           <Route path="about" element={<About />} />
           <Route path="properties" element={<Properties />} />
           <Route path="testimonial" element={<Testimonial />} />
