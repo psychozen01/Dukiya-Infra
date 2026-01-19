@@ -1,7 +1,7 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import TempHome from "./pages/TempHome";
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Properties from "./pages/Properties";
 import Testimonial from "./pages/Testimonial";
@@ -15,8 +15,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<TempHome />} />
         <Route element={<Layout />}>
+          <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="properties" element={<Properties />} />
           <Route path="testimonial" element={<Testimonial />} />
