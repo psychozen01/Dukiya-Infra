@@ -8,7 +8,7 @@ const Footer: FC = () => {
   const explore = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
-    { label: "Blogs", href: "/blogs" },
+    { label: "Blogs", href: "#view-all-blogs-section" },
     { label: "Contact Us", href: "/contact" },
   ];
 
@@ -80,6 +80,22 @@ const Footer: FC = () => {
                 <li key={i.label}>
                   <a
                     href={i.href}
+                    onClick={(e) => {
+                      if (i.label === "Blogs") {
+                        e.preventDefault();
+                        // Check if we're already on the home page
+                        if (window.location.pathname === "/") {
+                          // We're on home page, scroll to the section
+                          const element = document.getElementById("view-all-blogs-section");
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth", block: "center" });
+                          }
+                        } else {
+                          // Navigate to home page first, then scroll
+                          window.location.href = "/#view-all-blogs-section";
+                        }
+                      }
+                    }}
                     className="inline-block text-white/85 hover:text-[#c2a579] transition-colors"
                   >
                     {i.label}

@@ -1,5 +1,5 @@
 // src/pages/Home.tsx
-import heroImg from "@/assets/home/hero.svg";
+// import heroImg from "@/assets/home/hero.svg";
 // import img1 from "@/assets/home/img1.svg";     // skyscraper image
 // import img2 from "@/assets/home/img2.svg";   // re-imagining horizon image
 import i1 from "@/assets/home/img3.png"; // feature (tall)
@@ -51,7 +51,7 @@ function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-end bg-cover bg-center"
-      style={{ backgroundImage: `url(${heroImg})` }}
+      style={{ backgroundImage: `url(/hero.gif)` }}
     >
       <div className="absolute inset-0 bg-black/5" />
 
@@ -798,7 +798,7 @@ function RecentBlogs() {
           </div>
 
           {/* Desktop “View All” */}
-          <div className="mt-8 hidden justify-center md:flex">
+          <div id="view-all-blogs-section" className="mt-8 hidden justify-center md:flex">
             <button
               onClick={() => setShowAllModal(true)}
               className={`inline-flex rounded-md bg-[#b4956a] px-5 py-2 text-sm font-semibold text-black hover:opacity-90 transition-all ${footerVisible ? "opacity-0 pointer-events-none translate-y-2" : "opacity-100"
